@@ -2,12 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Final Project</title>
+    <title>Audelia</title>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
     <script src="app.js"></script>
   </head>
-  <body ng-app="audelia" ng-controller="MainCtrl">
-    {{test}}
 
+<body ng-app="audelia" ng-controller="MainCtrl">
+  <div ng-repeat = "post in posts">
+      {{post.title}} - {{post.username}} - {{post.postInput}}
+  </div>
+
+  <form ng-submit="addPost()">
+    <input type="text" ng-model="title" />
+    <button type="submit">Post</button>
+  </form>
   </body>
 </html>
