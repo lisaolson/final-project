@@ -16,7 +16,12 @@ var controllers = require('./controllers');
 
 //ROUTES
 
-//HTML Endpoints
+//JSON Endpoints
+
+
+var mongoose = require('mongoose');
+var Post = mongoose.model('Post');
+var Comment = mongoose.model('Comment');
 
 app.get('/', function homepage (req, res){
   res.sendFile(__dirname + '/index.html');
@@ -39,9 +44,51 @@ app.post('/posts', function(req, res, next) {
     res.json(post);
   });
 });
-//JSON Endpoints
 
-// app.get('/posts', controllers.posts.index);
+app.param('post', function(req, res, next, id) {
+  var query = Post.findById(id);
+
+  query.exec(function (err, post) {
+    if (err) { return next(err); }
+
+    req.post = post;
+    return next();
+  })
+});
+
+app.get('/posts/:post', function(req, res) {
+  req.post.populate('comments', function(err, post) {
+      res.json(req.post);
+  });
+});
+
+app.post('/posts/:posts/comments', function(req, res, next){
+  var comment = new Comment(req.body);
+  comment.post = req.post;
+
+  comment.save(function(err, comment) {
+    if (err) { return next(err); }
+
+    req.post.comments.push(comment);
+    req.post.save(function(err, post) {
+      if (err) { return next(err); }
+
+      res.json(comment);
+    });
+  });
+});
+
+app.param('comment', function(req, res, next, id) {
+  var query = Comment.findById(id);
+
+  query.exec(function (err, post) {
+    if (err) { return next(err); }
+
+    req.comment = comment;
+    return next();
+  });
+});
+
 
 //SERVER
 
