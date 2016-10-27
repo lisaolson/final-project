@@ -1,0 +1,26 @@
+{
+  "name": "audelia",
+  "version": "1.0.0",
+  "description": "Final Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lisaolson/final-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lisaolson/final-project/issues"
+  },
+  "homepage": "https://github.com/lisaolson/final-project#readme",
+  "dependencies": {
+    "bower": "^1.7.9",
+    "express": "^4.13.3",
+    "mongodb": "^2.2.11",
+    "mongoose": "^4.6.5"
+  }
+}
