@@ -2,6 +2,8 @@
 
 //require express in app
 var express = require('express');
+var jwt = require('express-jwt');
+var auth = jwt({ secret: process.env.MY_KEY_NAME, userProperty: 'payload'});
 //generate new express app called 'app'
 var app = express();
 var mongoose = require('mongoose');
@@ -67,7 +69,7 @@ app.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
-app.get('/posts', function(req, res, next) {
+app.get('/posts', auth, function(req, res, next) {
   Post.find(function(err, posts) {
     if (err) { return next(err); }
 
@@ -109,7 +111,7 @@ app.param('comment', function(req, res, next, id) {
 
 
 
-app.post('/posts/:post/comments', function(req, res, next){
+app.post('/posts/:post/comments', auth, function(req, res, next){
   var comment = new Comment(req.body);
   comment.post = req.post;
 
