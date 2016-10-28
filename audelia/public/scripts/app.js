@@ -8,21 +8,54 @@ var app = angular.module('audelia', ['ui.router'])
         .state('home', {
           url: '/home',
           templateUrl: '/home.html',
-          controller: 'MainCtrl'
+          controller: 'MainCtrl',
+          resolve: {
+            postPromise: ['posts', function(posts) {
+              return posts.getAll();
+            }]
+          }
         })
 
         .state('posts', {
           url: '/posts/{id}',
           templateUrl: '/posts.html',
-          controller: 'PostsCtrl'
+          controller: 'PostsCtrl',
+          resolve: {
+            post: ['$stateParams', 'posts', function($stateParams, posts) {
+              return posts.get($stateParams.id);
+            }]
+          }
         });
 
         $urlRouterProvider.otherwise('home');
     }])
-  .factory('posts', [function(){
+
+  .factory('posts', ['$http', function($http){
     var o = {
       posts: []
     };
+    o.getAll = function() {
+      return $http.get('/posts').success(function(data) {
+        angular.copy(data, o.posts);
+      });
+    };
+
+    o.get = function(id) {
+      return $http.get('/posts/' + id).then(function(res) {
+        return res.data;
+      });
+    };
+
+    o.create = function(post) {
+      return $http.post('/posts', post).success(function(data) {
+        o.posts.push(data);
+      });
+    };
+
+    o.addComment = function(id, comment) {
+      return $http.post('/posts/' + id + '/comments', comment);
+    };
+
     return o;
   }])
 
@@ -34,36 +67,34 @@ var app = angular.module('audelia', ['ui.router'])
       $scope.posts = posts.posts;
 
       $scope.addPost = function() {
-        if ($scope.title === '') { return; }
-        $scope.posts.push({
+        if (!$scope.title || $scope.title === '') { return; }
+        posts.create({
           title: $scope.title,
           username: $scope.username,
-          postInput: $scope.postInput,
-          comments: [
-            {author: 'Joe', body: 'Cool post'},
-            {author: 'Bob', body: 'All wrong'}
-          ]
+          postBody: $scope.postBody,
         });
 
         $scope.title = '';
         $scope.username = '';
-        $scope.postInput = '';
-      }
+        $scope.postBody = '';
+      };
     }])
 
   app.controller('PostsCtrl', [
       '$scope',
-      '$stateParams',
       'posts',
-    function($scope, $stateParams, posts) {
-      $scope.post = posts.posts[$stateParams.id];
+      'post',
+    function($scope, posts, post) {
+      $scope.post = post;
       //
       $scope.addComment = function() {
         if ($scope.body === '') { return; }
-        $scope.post.comments.push({
+        posts.addComment(post._id, {
           body: $scope.body,
-          author: 'user'
+          author: 'user',
+        }).success(function(comment) {
+          $scope.post.comments.push(comment);
         });
         $scope.body = '';
-      }
+      };
     }]);

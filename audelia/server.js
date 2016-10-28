@@ -5,23 +5,20 @@ var express = require('express');
 //generate new express app called 'app'
 var app = express();
 
-require('./models/Posts');
-require('./models/Comments');
-
 //serve static files from public folder
 app.use(express.static(__dirname + '/public'));
 
 
-var controllers = require('./controllers');
-
-//ROUTES
-
-//JSON Endpoints
-
-
 var mongoose = require('mongoose');
+require('./models/Posts');
+require('./models/Comments');
 var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/audelia');
+  //
+
 
 app.get('/', function homepage (req, res){
   res.sendFile(__dirname + '/index.html');
@@ -29,17 +26,17 @@ app.get('/', function homepage (req, res){
 
 app.get('/posts', function(req, res, next) {
   Post.find(function(err, posts) {
-    if (err) { next(err); }
+    if (err) { return next(err); }
 
     res.json(posts);
-  })
+  });
 });
 
-app.post('/posts', function(req, res, next) {
+app.post('/posts/', function(req, res, next) {
   var post = new Post(req.body);
 
   post.save(function(err, post) {
-    if (err) {return next(err); }
+    if (err) { return next(err); }
 
     res.json(post);
   });
@@ -53,16 +50,23 @@ app.param('post', function(req, res, next, id) {
 
     req.post = post;
     return next();
-  })
-});
-
-app.get('/posts/:post', function(req, res) {
-  req.post.populate('comments', function(err, post) {
-      res.json(req.post);
   });
 });
 
-app.post('/posts/:posts/comments', function(req, res, next){
+app.param('comment', function(req, res, next, id) {
+  var query = Comment.findById(id);
+
+  query.exec(function (err, comment) {
+    if (err) { return next(err); }
+
+    req.comment = comment;
+    return next();
+  });
+});
+
+
+
+app.post('/posts/:post/comments', function(req, res, next){
   var comment = new Comment(req.body);
   comment.post = req.post;
 
@@ -78,20 +82,15 @@ app.post('/posts/:posts/comments', function(req, res, next){
   });
 });
 
-app.param('comment', function(req, res, next, id) {
-  var query = Comment.findById(id);
 
-  query.exec(function (err, post) {
-    if (err) { return next(err); }
 
-    req.comment = comment;
-    return next();
+app.get('/posts/:post', function(req, res) {
+  req.post.populate('comments', function(err, post) {
+    if(err) { return next(err); }
+
+      res.json(req.post);
   });
 });
-
-
-//SERVER
-
 
 //listen on port 3000
 
