@@ -21,6 +21,7 @@
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
     "express": "^4.13.3",
+    "jsonwebtoken": "^7.1.9",
     "mongodb": "^2.2.11",
     "mongoose": "^4.6.5"
   }
