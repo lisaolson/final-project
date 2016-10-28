@@ -20,9 +20,13 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
-    "express": "^4.13.3",
+    "express": "^4.14.0",
+    "express-jwt": "^5.1.0",
+    "install": "^0.8.2",
     "jsonwebtoken": "^7.1.9",
     "mongodb": "^2.2.11",
-    "mongoose": "^4.6.5"
+    "mongoose": "^4.6.5",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
   }
 }

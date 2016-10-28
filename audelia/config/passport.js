@@ -5,7 +5,7 @@ var User = mongoose.model('User');
 
 //check whether they're a username and if it's the correct username/password
 passport.use(new LocalStrategy(
-  function username, password, done) {
+  function (username, password, done) {
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
