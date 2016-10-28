@@ -4,7 +4,7 @@
 var express = require('express');
 //generate new express app called 'app'
 var app = express();
-
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 
@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 app.use(passport.initialize());
-var mongoose = require('mongoose');
+
 require('./models/Posts');
 require('./models/Comments');
 require('./models/Users');

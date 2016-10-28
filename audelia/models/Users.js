@@ -41,7 +41,7 @@ UserSchema.method.generateJWT = function() {
     username: this.username,
     exp: parseInt(exp.getTime() / 1000),
 
-  }, var apiKey = process.env.MY_KEY_NAME);
+  }, process.env.MY_KEY_NAME);
 }
 
 
