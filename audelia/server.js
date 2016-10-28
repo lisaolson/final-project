@@ -5,9 +5,13 @@ var express = require('express');
 //generate new express app called 'app'
 var app = express();
 
+var bodyParser = require('body-parser')
+
 //serve static files from public folder
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(bodyParser.json());
 
 var mongoose = require('mongoose');
 require('./models/Posts');
