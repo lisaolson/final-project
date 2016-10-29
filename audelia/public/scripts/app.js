@@ -64,6 +64,8 @@ var app = angular.module('audelia', ['ui.router'])
     auth.getToken = function() {
       return $window.localStorage['audelia-token'];
     }
+
+    //retrive token
     //checks whether user is logged in
     auth.isLoggedIn = function() {
       var token = auth.getToken();
@@ -75,38 +77,40 @@ var app = angular.module('audelia', ['ui.router'])
       } else {
         return false;
       }
-    };
+    }
 
     auth.currentUser = function() {
       if (auth.isLoggedIn()) {
         var token = auth.getToken();
         var payload = JSON.parse($window.atob(token.split('.')[1]));
 
+        //get us username from currently logged in user
         return payload.username;
       }
-    };
+    }
 
     //saving token logs user in
     auth.register = function(user) {
       return $http.post('/register', user).success(function(data) {
         auth.saveToken(data.token);
       });
-    };
+    }
 
-    auth.login = function(user) {
+    auth.logIn = function(user) {
       return $http.post('/login', user).success(function(data) {
         auth.saveToken(data.token);
       });
-    };
+    }
 
     auth.logOut = function() {
       $window.localStorage.removeItem('audelia-token');
-    };
+    }
 
     return auth;
   }])
 
-  .factory('posts', ['$http', function($http){
+
+  .factory('posts', ['$http', 'auth', function($http, auth){
     var o = {
       posts: []
     };
@@ -123,57 +127,20 @@ var app = angular.module('audelia', ['ui.router'])
     };
 
     o.create = function(post) {
-      return $http.post('/posts', post).success(function(data) {
+      return $http.post('/posts', post, {
+        headers: {Authorization: 'Bearer ' + auth.getToken()}
+      }).success(function(data) {
         o.posts.push(data);
       });
     };
 
     o.addComment = function(id, comment) {
-      return $http.post('/posts/' + id + '/comments', comment);
+      return $http.post('/posts/' + id + '/comments', comment, {
+        headers: {Authorization: 'Bearer ' + auth.getToken()}
+      });
     };
-
     return o;
-  }])
-
-  app.controller('MainCtrl', [
-    '$scope',
-    'posts',
-    function($scope, posts){
-
-      $scope.posts = posts.posts;
-
-      $scope.addPost = function() {
-        if (!$scope.title || $scope.title === '') { return; }
-        posts.create({
-          title: $scope.title,
-          username: $scope.username,
-          postBody: $scope.postBody,
-        });
-
-        $scope.title = '';
-        $scope.username = '';
-        $scope.postBody = '';
-      };
-    }])
-
-  app.controller('PostsCtrl', [
-      '$scope',
-      'posts',
-      'post',
-    function($scope, posts, post) {
-      $scope.post = post;
-      //
-      $scope.addComment = function() {
-        if ($scope.body === '') { return; }
-        posts.addComment(post._id, {
-          body: $scope.body,
-          author: 'user',
-        }).success(function(comment) {
-          $scope.post.comments.push(comment);
-        });
-        $scope.body = '';
-      };
-    }])
+  }]);
 
   app.controller('AuthCtrl', [
       '$scope',
@@ -185,7 +152,7 @@ var app = angular.module('audelia', ['ui.router'])
         $scope.register = function() {
           auth.register($scope.user).error(function(error){
             $scope.error = error;
-          }).thn(function(){
+          }).then(function(){
             $state.go('home');
           });
         };
@@ -199,11 +166,51 @@ var app = angular.module('audelia', ['ui.router'])
         };
       }])
 
-  app.controller('NavCtrl', [
-    '$scope',
-    '$auth',
-    function($scope, auth){
-      $scope.isLoggedIn = auth.isLoggedIn;
-      $scope.currentUser = auth.currentUser;
-      $scope.logOut = auth.logOut;
-    }])
+      app.controller('MainCtrl', [
+        '$scope',
+        'posts',
+        function($scope, posts){
+
+          $scope.posts = posts.posts;
+
+          $scope.addPost = function() {
+            if (!$scope.title || $scope.title === '') { return; }
+            posts.create({
+              title: $scope.title,
+              username: $scope.username,
+              postBody: $scope.postBody,
+            });
+
+            $scope.title = '';
+            $scope.username = '';
+            $scope.postBody = '';
+          };
+        }])
+
+      app.controller('PostsCtrl', [
+          '$scope',
+          'posts',
+          'post',
+        function($scope, posts, post) {
+          $scope.post = post;
+          //
+          $scope.addComment = function() {
+            if ($scope.body === '') { return; }
+            posts.addComment(post._id, {
+              body: $scope.body,
+              author: 'user',
+            }).success(function(comment) {
+              $scope.post.comments.push(comment);
+            });
+            $scope.body = '';
+          };
+        }])
+
+      app.controller('NavCtrl', [
+        '$scope',
+        '$auth',
+        function($scope, auth){
+          $scope.isLoggedIn = auth.isLoggedIn;
+          $scope.currentUser = auth.currentUser;
+          $scope.logOut = auth.logOut;
+        }]);
