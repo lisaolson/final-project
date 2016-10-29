@@ -2,33 +2,32 @@
 
 //require express in app
 var express = require('express');
-var jwt = require('express-jwt');
-var auth = jwt({ secret: process.env.MY_KEY_NAME, userProperty: 'payload'});
-//generate new express app called 'app'
 var app = express();
+var jwt = require('express-jwt');
+var passport = require('passport');
+var auth = jwt({ secret: process.env.MY_KEY_NAME, userProperty: 'payload'});
+
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var passport = require('passport');
 
 
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/audelia');
 //serve static files from public folder
 app.use(express.static(__dirname + '/public'));
+app.use(passport.initialize());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
-app.use(passport.initialize());
 
 require('./models/Posts');
 require('./models/Comments');
 require('./models/Users');
 require('./config/passport');
+
 var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
-
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/audelia');
-  //
-
+var User = mongoose.model('User');
 
 app.get('/', function homepage (req, res){
   res.sendFile(__dirname + '/index.html');
@@ -63,13 +62,15 @@ app.post('/login', function(req, res, next) {
 
     if (user){
       return res.json({token: user.generateJWT()});
+    } else if (!req.headers.authorization) {
+      return res.send(400, 'missing authorization header');
     } else {
       return res.status(401).json(info);
     }
   })(req, res, next);
 });
 
-app.get('/posts', auth, function(req, res, next) {
+app.get('/posts', function(req, res, next) {
   Post.find(function(err, posts) {
     if (err) { return next(err); }
 
@@ -77,10 +78,10 @@ app.get('/posts', auth, function(req, res, next) {
   });
 });
 
-app.post('/posts/', function(req, res, next) {
+app.post('/posts/', auth, function(req, res, next) {
   var post = new Post(req.body);
   post.author = req.payload.username;
-  
+
   post.save(function(err, post) {
     if (err) { return next(err); }
 
