@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" href="./styles/styles.css">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Stalemate|Poiret+One|Miss+Fajardose|Mr+Bedfort" rel="stylesheet">
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src ="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
@@ -13,7 +14,7 @@
 
   </head>
 
-  <body ng-app="audelia">
+  <body id="body" ng-app="audelia">
     <!-- <nav class="navbar navbar-default pull-right" ng-controller="NavCtrl">
       <ul class="nav navbar-nav">
         <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
@@ -23,17 +24,39 @@
       </ul>
     </nav> -->
 
+    <nav class="navbar navbar-default" id="nav">
+      <ul class="nav navbar-nav">
+        <li><a id="glyph" class="glyphicon glyphicon-home" href="/#/home"></a></li>
+        <li><a id="glyph" class="glyphicon glyphicon-user" href="#"></a></li>
+        <li><a id="glyph" class="glyphicon glyphicon-off" href="#"></a></li>
+        <li><a id="glyph" class="glyphicon glyphicon-cog" href="#"></a></li>
+      </ul>
+    </nav>
+
+
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
         <ui-view></ui-view>
-      </div>
     </div>
 
-    <script type="text/ng-template" id="/home.html">
-      <div class="page-header">
-        <h1>Audelia</h1>
-      </div>
+    <footer></footer>
 
+    <script type="text/ng-template" id="/home.html">
+      <div class="container">
+        <div class="page-header typewriter">
+          <h1 id="title">Welcome to <span id="aud"><span id="A">A</span>udelia</span></h1>
+        </div>
+        <div class="circles">
+          <div class="row">
+            <div class="col-md-4 items"></div>
+            <div class="col-md-4 items"></div>
+            <div class="col-md-4 items"></div>
+          </div>
+        </div>
+      </div>
+    </script>
+
+
+    <script type="text/ng-template" id = "/posts.html">
       <div ng-repeat = "post in posts">
         {{post.title}} -  {{post.username}} - {{post.postBody}}
 
@@ -57,7 +80,8 @@
       </form>
     </script>
 
-    <script type="text/ng-template" id = "/posts.html">
+
+    <script type="text/ng-template" id = "/postsId.html">
       <div class="page-header">
         <h3>{{post.title}}</h3>
       </div>
