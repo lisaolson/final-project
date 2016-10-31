@@ -16,7 +16,7 @@
 
   </head>
 
-  <body id="body" ng-app="audelia">
+  <body ng-app="audelia">
     <!-- <nav class="navbar navbar-default pull-right" ng-controller="NavCtrl">
       <ul class="nav navbar-nav">
         <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
@@ -26,24 +26,26 @@
       </ul>
     </nav> -->
 
-    <nav class="navbar navbar-default" id="nav">
-      <ul class="nav navbar-nav">
-        <li><a id="glyph" class="glyphicon glyphicon-home" href="/#/home"></a></li>
-        <li><a id="glyph" class="glyphicon glyphicon-user" href="#"></a></li>
-        <li><a id="glyph" class="glyphicon glyphicon-off" href="#"></a></li>
-        <li><a id="glyph" class="glyphicon glyphicon-exclamation-sign" href="#"></a></li>
-      </ul>
-    </nav>
+      <nav class="navbar navbar-default" id="nav">
+        <ul class="nav navbar-nav">
+          <li><a id="glyph" class="glyphicon glyphicon-home" href="/#/home"></a></li>
+          <li><a id="glyph" class="glyphicon glyphicon-user" href="#"></a></li>
+          <li><a id="glyph" class="glyphicon glyphicon-off" href="#"></a></li>
+          <li><a id="glyph" class="glyphicon glyphicon-exclamation-sign" href="#"></a></li>
+        </ul>
+      </nav>
 
 
-    <div class="row">
-        <ui-view></ui-view>
-    </div>
+      <div class="row">
+          <ui-view></ui-view>
+      </div>
 
-    <footer></footer>
+      <button type="button" onclick="hideBtn()">Hide</button>
 
+      <footer></footer>
+      
     <script type="text/ng-template" id="/home.html">
-      <div class="container">
+      <div class="section-1">
         <div class="page-header typewriter">
           <h1 id="title">Welcome to <span id="aud">Audelia</span></h1>
           <h2 id="title-script">...we're happy you're here...</h2>
@@ -72,9 +74,29 @@
         </div>
       </div>
 
-      <div class="container-2">
+      <div class="section-2">
+        <div class="row">
+          <div class="col-md-2">
 
+          </div>
+          <div class="col-md-2">
+
+          </div>
+          <div class="col-md-2">
+
+          </div>
+          <div class="col-md-2">
+
+          </div>
+          <div class="col-md-2">
+
+          </div>
+          <div class="col-md-2">
+
+          </div>
+        </div>
       </div>
+
     </script>
 
 
