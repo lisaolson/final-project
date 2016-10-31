@@ -9,45 +9,56 @@ var app = angular.module('audelia', ['ui.router'])
           url: '/home',
           templateUrl: '/home.html',
           controller: 'MainCtrl',
-          resolve: {
-            postPromise: ['posts', function(posts) {
-              return posts.getAll();
-            }]
-          }
+          // resolve: {
+          //   postPromise: ['posts', function(posts) {
+          //     return posts.getAll();
+          //   }]
+          // }
         })
 
-        .state('posts', {
-          url: '/posts/{id}',
-          templateUrl: '/posts.html',
-          controller: 'PostsCtrl',
-          resolve: {
-            post: ['$stateParams', 'posts', function($stateParams, posts) {
-              return posts.get($stateParams.id);
-            }]
-          }
-        })
-
-        .state('login', {
-          url: '/login',
-          templateUrl: '/login.html',
-          controller: 'AuthCtrl',
-          onEnter: ['state', 'auth', function($state, auth) {
-            if (auth.isLoggedIn()) {
-              $state.go('home');
-            }
+      .state('posts', {
+        url: '/posts',
+        templateUrl: '/posts.html',
+        controller: 'PostsCtrl',
+        resolve:  {
+          postPromise: ['posts', function(posts) {
+            return posts.getAll();
           }]
-        })
+        }
+      })
 
-        .state('register', {
-          url: '/register',
-          templateUrl: '/register.html',
-          controller: 'AuthCtrl',
-          onEnter: ['state', 'auth', function($state, auth) {
-            if (auth.isLoggedIn()) {
-              $state.go('home');
-            }
+      .state('postsId', {
+        url: '/posts/{id}',
+        templateUrl: '/postsId.html',
+        controller: 'PostsIdCtrl',
+        resolve: {
+          post: ['$stateParams', 'posts', function($stateParams, posts) {
+            return posts.get($stateParams.id);
           }]
-        });
+        }
+      })
+
+      .state('login', {
+        url: '/login',
+        templateUrl: '/login.html',
+        controller: 'AuthCtrl',
+        onEnter: ['state', 'auth', function($state, auth) {
+          if (auth.isLoggedIn()) {
+            $state.go('home');
+          }
+        }]
+      })
+
+      .state('register', {
+        url: '/register',
+        templateUrl: '/register.html',
+        controller: 'AuthCtrl',
+        onEnter: ['state', 'auth', function($state, auth) {
+          if (auth.isLoggedIn()) {
+            $state.go('home');
+          }
+        }]
+      });
 
         $urlRouterProvider.otherwise('home');
     }])
@@ -187,7 +198,7 @@ var app = angular.module('audelia', ['ui.router'])
           };
         }])
 
-      app.controller('PostsCtrl', [
+      app.controller('PostsIdCtrl', [
           '$scope',
           'posts',
           'post',
