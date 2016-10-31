@@ -6,7 +6,9 @@
 
     <link rel="stylesheet" href="./styles/styles.css">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Stalemate|Poiret+One|Miss+Fajardose|Mr+Bedfort" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Poiret+One|Miss+Fajardose|Mr+Bedfort|Dancing+Script" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src ="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
@@ -29,7 +31,7 @@
         <li><a id="glyph" class="glyphicon glyphicon-home" href="/#/home"></a></li>
         <li><a id="glyph" class="glyphicon glyphicon-user" href="#"></a></li>
         <li><a id="glyph" class="glyphicon glyphicon-off" href="#"></a></li>
-        <li><a id="glyph" class="glyphicon glyphicon-cog" href="#"></a></li>
+        <li><a id="glyph" class="glyphicon glyphicon-exclamation-sign" href="#"></a></li>
       </ul>
     </nav>
 
@@ -43,41 +45,63 @@
     <script type="text/ng-template" id="/home.html">
       <div class="container">
         <div class="page-header typewriter">
-          <h1 id="title">Welcome to <span id="aud"><span id="A">A</span>udelia</span></h1>
+          <h1 id="title">Welcome to <span id="aud">Audelia</span></h1>
+          <h2 id="title-script">...we're happy you're here...</h2>
         </div>
-        <div class="circles">
+        <div class="squares">
           <div class="row">
-            <div class="col-md-4 items"></div>
-            <div class="col-md-4 items"></div>
-            <div class="col-md-4 items"></div>
+            <div class="col-md-4 items" id="item1">
+              <h2 class="animated infinite pulse" id="square-title">Reach Out</h2>
+              <div class="glyphicon glyphicon-question-sign" id="glyph-square"></div>
+              <p id="home-text">It is our desire that this will be a place of hope, encouragement, knowledge, inspiration, friendship and healing. If you need additional support, we have resources detailing local shelters and hotlines.</p>
+              <button class="btn" id="btn1" type="button"><span class="glyphicon glyphicon-menu-right"></span></button>
+            </div>
+            <div class="col-md-4 items" id="item2">
+              <h2 class="animated infinite pulse" id="square-title">Share</h2>
+              <div class="glyphicon glyphicon-pencil" id="glyph-square"></div>
+              <p id="home-text">Any member who joins the forum can feel free to post questions or concerns <span id="special">anonymously</span> by using the screen name of their choice. Some silently read the posts of others for <span id="special">encouragement</span> and some become active participants in the many encouraging thread discussions. Ready to check it out? </p>
+              <button class="btn" id="btn2" type="button"><span class="glyphicon glyphicon-menu-right"></span></button>
+              </div>
+            <div class="col-md-4 items" id="item3">
+              <h2 class="animated infinite pulse" id="square-title">Connect</h2>
+              <div class="glyphicon glyphicon-map-marker" id="glyph-square"></div>
+              <p id="home-text">At Audelia, we welcome community and spreading the news of local events happening in the community is part of our goal.  Explore local events happening in the area closest to you.</p>
+              <button class="btn" id="btn3" type="button"><span class="glyphicon glyphicon-menu-right"></span></button>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div class="container-2">
+
       </div>
     </script>
 
 
     <script type="text/ng-template" id = "/posts.html">
-      <div ng-repeat = "post in posts">
-        {{post.title}} -  {{post.username}} - {{post.postBody}}
+      <div class="container posts">
+        <div ng-repeat = "post in posts">
+          {{post.title}} -  {{post.username}} - {{post.postBody}}
 
-        <span>
-          <a href="#/posts/{{post._id}}">Comments</a>
-        </span>
+          <span>
+            <a href="#/posts/{{post._id}}">Comments</a>
+          </span>
+        </div>
+
+        <form ng-submit="addPost()">
+          <h3>Add a new post</h3>
+          <div class="form-group">
+            <input type="text" placeholder="Title" ng-model="title"></input>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Username" ng-model="username"></input>
+          </div>
+          <div class="form-group">
+            <input type="text_field" placeholder="Post" ng-model="bodyPost"></input>
+          </div>
+          <button type="submit" class="btn btn-primary">Post</button>
+        </form>
       </div>
-
-      <form ng-submit="addPost()">
-        <h3>Add a new post</h3>
-        <div class="form-group">
-          <input type="text" placeholder="Title" ng-model="title"></input>
-        </div>
-        <div class="form-group">
-          <input type="text" placeholder="Username" ng-model="username"></input>
-        </div>
-        <div class="form-group">
-          <input type="text_field" placeholder="Post" ng-model="bodyPost"></input>
-        </div>
-        <button type="submit" class="btn btn-primary">Post</button>
-      </form>
     </script>
 
 
