@@ -6,9 +6,14 @@ var app = angular.module('audelia', ['ui.router'])
     function($stateProvider, $urlRouterProvider) {
 
       $stateProvider
-        .state('home', {
-          url: '/home',
+        .state('/home', {
+          url:'/home',
           templateUrl: '/home.html',
+        })
+
+        .state('posts', {
+          url: '/posts',
+          templateUrl: '/posts.html',
           controller: 'MainCtrl',
           resolve: {
             postPromise: ['posts', function(posts) {
@@ -17,15 +22,25 @@ var app = angular.module('audelia', ['ui.router'])
           }
         })
 
-        .state('posts', {
+        .state('post', {
           url: '/posts/{id}',
-          templateUrl: '/posts.html',
+          templateUrl: '/post.html',
           controller: 'PostsCtrl',
           resolve: {
             post: ['$stateParams', 'posts', function($stateParams, posts) {
               return posts.get($stateParams.id);
             }]
           }
+        })
+
+        .state('events', {
+          url: '/events',
+          templateUrl: '/events.html'
+        })
+
+        .state('share', {
+          url: '/share',
+          templateUrl: '/share.html'
         });
 
         $urlRouterProvider.otherwise('home');

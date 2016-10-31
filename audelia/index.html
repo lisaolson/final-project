@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="./styles/styles.css">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Poiret+One|Miss+Fajardose|Mr+Bedfort|Dancing+Script" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src ="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
@@ -21,7 +21,9 @@
     <nav class="navbar navbar-default" id="nav">
       <ul class="nav navbar-nav">
         <li><a id="glyph" class="glyphicon glyphicon-home" href="/#/home"></a></li>
-        <li><a id="glyph" class="glyphicon glyphicon-exclamation-sign" href="#"></a></li>
+        <li><a id="glyph" class="glyphicon glyphicon-pencil" href="#"></a></li>
+        <li><a id="glyph" class="glyphicon glyphicon-map-marker" href="#"></a></li>
+        <li><a id="glyph" class="glyphicon glyphicon-heart" href="#"></a></li>
       </ul>
     </nav>
 
@@ -33,7 +35,7 @@
     <footer></footer>
 
 
-    <script type="text/ng-template" id="/home.html">
+    <script type="text/ng-template" id="/posts.html">
          <div class="page-header">
            <h1>Audelia</h1>
          </div>
@@ -61,7 +63,7 @@
          </form>
        </script>
 
-       <script type="text/ng-template" id = "/posts.html">
+       <script type="text/ng-template" id = "/post.html">
       <div class="page-header">
         <h3>{{post.title}}</h3>
       </div>
@@ -84,9 +86,9 @@
         <button type="submit" class="btn btn-primary">Post</button>
       </form>
     </script>
-  </body>
-</html>
-    <!-- <script type="text/ng-template" id="/home.html">
+
+
+    <script type="text/ng-template" id="/home.html">
       <div class="container">
         <div class="page-header typewriter">
           <h1 id="title">Welcome to <span id="aud">Audelia</span></h1>
@@ -96,7 +98,7 @@
           <div class="row">
             <div class="col-md-4 items" id="item1">
               <h2 class="animated infinite pulse" id="square-title">Reach Out</h2>
-              <div class="glyphicon glyphicon-question-sign" id="glyph-square"></div>
+              <div class="glyphicon glyphicon-heart" id="glyph-square"></div>
               <p id="home-text">It is our desire that this will be a place of hope, encouragement, knowledge, inspiration, friendship and healing. If you need additional support, we have resources detailing local shelters and hotlines.</p>
               <button class="btn" id="btn1" type="button"><span class="glyphicon glyphicon-menu-right"></span></button>
             </div>
@@ -138,56 +140,22 @@
           </div>
         </div>
       </div>
-    </script> -->
-
-
-    <!-- <script type="text/ng-template" id = "/posts.html">
-      <div class="container posts">
-        <div ng-repeat = "post in posts">
-          {{post.title}} -  {{post.username}} - {{post.postBody}}
-
-          <span>
-            <a href="#/posts/{{post._id}}">Comments</a>
-          </span>
-        </div>
-
-        <form ng-submit="addPost()">
-          <h3>Add a new post</h3>
-          <div class="form-group">
-            <input type="text" placeholder="Title" ng-model="title"></input>
-          </div>
-          <div class="form-group">
-            <input type="text" placeholder="Username" ng-model="username"></input>
-          </div>
-          <div class="form-group">
-            <input type="text_field" placeholder="Post" ng-model="bodyPost"></input>
-          </div>
-          <button type="submit" class="btn btn-primary">Post</button>
-        </form>
-      </div>
     </script>
 
 
-    <script type="text/ng-template" id = "/postsId.html">
-      <div class="page-header">
-        <h3>{{post.title}}</h3>
-      </div>
-
-      <div ng-repeat="comment in post.comments">
-        <span style="font-size:20px; margin-left:10px;">
-          Comment: {{comment.body}}
-        </span>
-      </div>
-
-      <form ng-submit="addComment()">
-        <h3>Add a new comment</h3>
-
-        <div class="form-group">
-          <input type="text"
-          class="form-control"
-          placeholder="Comment"
-          ng-model="body"></input>
+    <script type="text/ng-template" id="/events.html">
+        <div class="spin">
+          <div class="wrap">
+            <div class="sticker"></div>
+            <div class="msg">events!</div>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary">Post</button>
-      </form> --> -->
-    <!-- </script>
+    </script>
+
+    <script type="text/ng-template" id="/share.html">
+      <h1>Share page</h1>
+    </script>
+
+
+  </body>
+</html>
