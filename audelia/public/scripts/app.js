@@ -225,3 +225,8 @@ var app = angular.module('audelia', ['ui.router'])
           $scope.currentUser = auth.currentUser;
           $scope.logOut = auth.logOut;
         }]);
+
+
+// function hideBtn() {
+//   document.getElementById(".all").style.visibility = hidden;
+// }
