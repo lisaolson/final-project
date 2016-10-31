@@ -71,12 +71,12 @@ var app = angular.module('audelia', ['ui.router'])
         posts.create({
           title: $scope.title,
           username: $scope.username,
-          postBody: $scope.postBody,
+          body: $scope.body,
         });
 
         $scope.title = '';
         $scope.username = '';
-        $scope.postBody = '';
+        $scope.body = '';
       };
     }])
 

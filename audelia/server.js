@@ -3,9 +3,14 @@
 //require express in app
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
+require('./models/Posts');
+require('./models/Comments');
+var Post = mongoose.model('Post');
+var Comment = mongoose.model('Comment');
+
 
 
 mongoose.Promise = global.Promise;
@@ -16,8 +21,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
-require('./models/Posts');
-require('./models/Comments');
 
 
 app.get('/', function homepage (req, res){
@@ -26,8 +29,7 @@ app.get('/', function homepage (req, res){
 
 
 
-var Post = mongoose.model('Post');
-var Comment = mongoose.model('Comment');
+
 // app.get('/', function(req, res) {
 //   res.render('index', { title: 'Express' });
 // });
@@ -35,15 +37,14 @@ var Comment = mongoose.model('Comment');
 
 app.get('/posts', function(req, res, next) {
   Post.find(function(err, posts) {
-    if (err) { next(err); }
+    if (err) { return next(err); }
 
     res.json(posts);
-  })
+  });
 });
 
-app.post('/posts/', function(req, res, next) {
+app.post('/posts', function(req, res, next) {
   var post = new Post(req.body);
-  post.author = req.payload.username;
 
   post.save(function(err, post) {
     if (err) { return next(err); }
@@ -57,7 +58,6 @@ app.param('post', function(req, res, next, id) {
 
   query.exec(function (err, post) {
     if (err) { return next(err); }
-    if (!post) { return next(new Error('can\'t find post')); }
 
     req.post = post;
     return next();
