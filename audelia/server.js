@@ -25,12 +25,27 @@ require('./models/Comments');
 require('./models/Users');
 require('./config/passport');
 
-var Post = mongoose.model('Post');
-var Comment = mongoose.model('Comment');
-var User = mongoose.model('User');
 
 app.get('/', function homepage (req, res){
   res.sendFile(__dirname + '/index.html');
+});
+
+
+
+var Post = mongoose.model('Post');
+var Comment = mongoose.model('Comment');
+var User = mongoose.model('User');
+// app.get('/', function(req, res) {
+//   res.render('index', { title: 'Express' });
+// });
+
+
+app.get('/posts', function(req, res, next) {
+  Post.find(function(err, posts) {
+    if (err) { next(err); }
+
+    res.json(posts);
+  })
 });
 
 //generating jwt when user is successfully registered
@@ -70,14 +85,6 @@ app.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
-app.get('/posts', function(req, res, next) {
-  Post.find(function(err, posts) {
-    if (err) { return next(err); }
-
-    res.json(posts);
-  });
-});
-
 app.post('/posts/', auth, function(req, res, next) {
   var post = new Post(req.body);
   post.author = req.payload.username;
@@ -94,6 +101,7 @@ app.param('post', function(req, res, next, id) {
 
   query.exec(function (err, post) {
     if (err) { return next(err); }
+    if (!post) { return next(new Error('can\'t find post')); }
 
     req.post = post;
     return next();
@@ -140,6 +148,10 @@ app.get('/posts/:post', function(req, res) {
   });
 });
 
+
+app.get('*', function homepage (req, res) {
+  res.sendFile(__dirName + '/index.html');
+});
 //listen on port 3000
 
 app.listen(process.env.PORT || 3000, function() {
