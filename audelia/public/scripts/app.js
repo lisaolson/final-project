@@ -33,6 +33,17 @@ var app = angular.module('audelia', ['ui.router'])
           }
         })
 
+        .state('newPost', {
+          url: '/newPost',
+          templateUrl: '/newPost.html',
+          controller: 'MainCtrl',
+          resolve: {
+            postPromise: ['posts', function(posts) {
+              return posts.getAll();
+            }]
+          }
+        })
+
         .state('events', {
           url: '/events',
           templateUrl: '/events.html'
@@ -71,6 +82,7 @@ var app = angular.module('audelia', ['ui.router'])
     o.addComment = function(id, comment) {
       return $http.post('/posts/' + id + '/comments', comment);
     };
+
     return o;
   }])
 
@@ -80,6 +92,7 @@ var app = angular.module('audelia', ['ui.router'])
     function($scope, posts){
 
       $scope.posts = posts.posts;
+
 
       $scope.addPost = function() {
         if (!$scope.title || $scope.title === '') { return; }

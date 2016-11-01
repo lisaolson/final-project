@@ -75,8 +75,6 @@ app.param('comment', function(req, res, next, id) {
   });
 });
 
-
-
 app.post('/posts/:post/comments', function(req, res, next){
   var comment = new Comment(req.body);
   comment.post = req.post;
@@ -93,8 +91,6 @@ app.post('/posts/:post/comments', function(req, res, next){
   });
 });
 
-
-
 app.get('/posts/:post', function(req, res) {
   req.post.populate('comments', function(err, post) {
     if(err) { return next(err); }
@@ -102,7 +98,6 @@ app.get('/posts/:post', function(req, res) {
       res.json(post);
   });
 });
-
 
 //listen on port 3000
 

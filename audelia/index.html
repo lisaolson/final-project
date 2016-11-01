@@ -35,57 +35,80 @@
     <footer></footer>
 
 
+
+
+
     <script type="text/ng-template" id="/posts.html">
+      <div class="allPosts">
          <div class="page-header">
            <h1>Audelia</h1>
          </div>
-
          <div ng-repeat = "post in posts">
-           {{post.title}} -  {{post.username}} - {{post.postBody}}
+           {{post.title}} -  {{post.username}} - {{post.body}}
 
            <span>
              <a href="#/posts/{{post._id}}">Comments</a>
            </span>
-         </div>
+           <a id="addGlyph" class="glyphicon glyphicon-pencil" href="/#/newPost"></a>
 
+         </div>
+    </script>
+
+
+
+
+
+    <script type="text/ng-template" id="/newPost.html">
+      <div class="addPost">
          <form ng-submit="addPost()">
            <h3>Add a new post</h3>
-           <div class="form-group">
+           <div class="form-group" id="posts">
              <input type="text" placeholder="Title" ng-model="title"></input>
            </div>
            <div class="form-group">
-             <input type="text" placeholder="Username" ng-model="username"></input>
+             <input type="text" placeholder="Username" ng-model="username"><div id="detail" class="glyphicon glyphicon-exclamation-sign">
+               <span id="some-element">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </span>
+             </div></input>
            </div>
            <div class="form-group">
-             <input type="text_field" placeholder="Post" ng-model="bodyPost"></input>
+             <textarea class="form-control" rows="10" placeholder="Post" ng-model="body"></textarea>
            </div>
-           <button type="submit" class="btn btn-primary">Post</button>
+           <button onclick="location.href = '/#/posts'" class="btn btn-primary" type="submit"></button>
          </form>
-       </script>
-
-       <script type="text/ng-template" id = "/post.html">
-      <div class="page-header">
-        <h3>{{post.title}}</h3>
       </div>
+     </script>
 
-      <div ng-repeat="comment in post.comments">
-        <span style="font-size:20px; margin-left:10px;">
-          Comment: {{comment.body}}
-        </span>
-      </div>
 
-      <form ng-submit="addComment()">
-        <h3>Add a new comment</h3>
 
-        <div class="form-group">
-          <input type="text"
-          class="form-control"
-          placeholder="Comment"
-          ng-model="body"></input>
+
+    <script type="text/ng-template" id = "/post.html">
+      <div class="addComment">
+        <div class="page-header">
+          <h3>{{post.title}}</h3>
+          <h4>{{post.username}}</h4>
+          <h4>{{post.body}}</h4>
         </div>
-        <button type="submit" class="btn btn-primary">Post</button>
-      </form>
+
+        <div ng-repeat="comment in post.comments">
+          <span style="font-size:20px; margin-left:10px;">
+            Comment: {{comment.body}}
+          </span>
+        </div>
+
+        <form ng-submit="addComment()">
+          <h3>Add a new comment</h3>
+
+          <div class="form-group">
+            <textarea class="form-control" rows="3" placeholder="Comment" ng-model="body"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Post</button>
+        </form>
+      </div>
     </script>
+
+
 
 
     <script type="text/ng-template" id="/home.html">
@@ -122,6 +145,9 @@
 
       </script>
 
+
+
+
     <script type="text/ng-template" id="/events.html">
         <div class="spin">
           <div class="wrap">
@@ -130,6 +156,9 @@
           </div>
         </div>
     </script>
+
+
+
 
     <script type="text/ng-template" id="/share.html">
 
@@ -151,6 +180,9 @@
         </div>
 
     </script>
+
+
+
 
   </body>
 </html>
