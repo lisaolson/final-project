@@ -21,9 +21,9 @@
     <nav class="navbar navbar-default" id="nav">
       <ul class="nav navbar-nav">
         <li><a id="glyph" class="glyphicon glyphicon-home" href="/#/home"></a></li>
-        <li><a id="glyph" class="glyphicon glyphicon-pencil" href="#"></a></li>
-        <li><a id="glyph" class="glyphicon glyphicon-map-marker" href="#"></a></li>
-        <li><a id="glyph" class="glyphicon glyphicon-heart" href="#"></a></li>
+        <li><a id="glyph" class="glyphicon glyphicon-pencil" href="/#/posts"></a></li>
+        <li><a id="glyph" class="glyphicon glyphicon-map-marker" href="/#/events"></a></li>
+        <li><a id="glyph" class="glyphicon glyphicon-heart" href="/#/share"></a></li>
       </ul>
     </nav>
 
@@ -98,50 +98,29 @@
           <div class="row">
             <div class="col-md-4 items" id="item1">
               <h2 class="animated infinite pulse" id="square-title">Reach Out</h2>
-              <div class="glyphicon glyphicon-heart" id="glyph-square"></div>
+              <a class="glyphicon glyphicon-heart" id="glyph-square" href="/#/share"></a>
               <p id="home-text">It is our desire that this will be a place of hope, encouragement, knowledge, inspiration, friendship and healing. If you need additional support, we have resources detailing local shelters and hotlines.</p>
-              <button class="btn" id="btn1" type="button"><span class="glyphicon glyphicon-menu-right"></span></button>
+              <!-- <button onclick="location.href = '/#/share'" class="btn" id="btn1" type="button"><span class="glyphicon glyphicon-menu-right"></span></button> -->
             </div>
             <div class="col-md-4 items" id="item2">
               <h2 class="animated infinite pulse" id="square-title">Share</h2>
-              <div class="glyphicon glyphicon-pencil" id="glyph-square"></div>
+              <a class="glyphicon glyphicon-pencil" id="glyph-square" href="/#/posts"></a>
               <p id="home-text">Any member who joins the forum can feel free to post questions or concerns <span id="special">anonymously</span> by using the screen name of their choice. Some silently read the posts of others for <span id="special">encouragement</span> and some become active participants in the many encouraging thread discussions. Ready to check it out? </p>
-              <button class="btn" id="btn2" type="button"><span class="glyphicon glyphicon-menu-right"></span></button>
+              <!-- <button onclick="location.href = '/#/posts'" class="btn" id="btn2" type="button"><span class="glyphicon glyphicon-menu-right"></span></button> -->
               </div>
             <div class="col-md-4 items" id="item3">
               <h2 class="animated infinite pulse" id="square-title">Connect</h2>
-              <div class="glyphicon glyphicon-map-marker" id="glyph-square"></div>
+              <a class="glyphicon glyphicon-map-marker" id="glyph-square" href="/#/events"></a>
               <p id="home-text">At Audelia, we welcome community and spreading the news of local events happening in the community is part of our goal.  Explore local events happening in the area closest to you.</p>
-              <button class="btn" id="btn3" type="button"><span class="glyphicon glyphicon-menu-right"></span></button>
+              <!-- <button onclick="location.href = '/#/events'" class="btn" id="btn3" type="button"><span class="glyphicon glyphicon-menu-right"></span></button> -->
             </div>
           </div>
         </div>
       </div>
 
       <div class="section-2">
-        <div class="row">
-          <div class="col-md-2">
 
-          </div>
-          <div class="col-md-2">
-
-          </div>
-          <div class="col-md-2">
-
-          </div>
-          <div class="col-md-2">
-
-          </div>
-          <div class="col-md-2">
-
-          </div>
-          <div class="col-md-2">
-
-          </div>
-        </div>
-      </div>
-    </script>
-
+      </script>
 
     <script type="text/ng-template" id="/events.html">
         <div class="spin">
@@ -153,9 +132,25 @@
     </script>
 
     <script type="text/ng-template" id="/share.html">
-      <h1>Share page</h1>
-    </script>
 
+      <h1>Share page</h1>
+        <div class="images-one">
+          <a id="aafv" href="https://aafvhope.org/"><img src="/images/aafv.png"></a>
+          <a id="amen" href="http://www.amenclinics.com/"><img src="/images/amen-clinics.png"></a>
+          <a id="healthy" href="http://www.healthyplace.com/"><img src="/images/healthy-place.png"></a>
+        </div>
+        <div class="images-two">
+          <a id="hotline" href="http://www.thehotline.org/"><img src="/images/hotline.png"></a>
+          <a id="medicine" href="https://medlineplus.gov/"><img src="/images/medicine-plus.png"></a>
+          <a id="ncadv" href="http://www.ncadv.org/"><img src="/images/ncadv.png"></a>
+        </div>
+
+        <div class="images-three">
+          <a id="teen" href="http://www.teenhealthandwellness.com/"><img src="/images/teen.png"></a>
+          <a id="woman" href="http://www.womaninc.org/"><img src="/images/woman.png"></a>
+        </div>
+
+    </script>
 
   </body>
 </html>
