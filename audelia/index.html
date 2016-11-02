@@ -8,31 +8,34 @@
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Poiret+One|Miss+Fajardose|Mr+Bedfort|Dancing+Script" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src ="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
-    <script src="./scripts/app.js"></script>
 
+    <script src="./scripts/app.js"></script>
   </head>
 
   <body ng-app="audelia" ng-controller="MainCtrl">
+    <div class="content">
+      <nav class="navbar navbar-default" id="nav">
+        <ul class="nav navbar-nav">
+          <li><a id="glyph" class="glyphicon glyphicon-home" href="/#/home"></a></li>
+          <li><a id="glyph" class="glyphicon glyphicon-pencil" href="/#/posts"></a></li>
+          <li><a id="glyph" class="glyphicon glyphicon-map-marker" href="/#/events"></a></li>
+          <li><a id="glyph" class="glyphicon glyphicon-heart glyph" href="/#/share"></a></li>
+        </ul>
+      </nav>
 
-    <nav class="navbar navbar-default" id="nav">
-      <ul class="nav navbar-nav">
-        <li><a id="glyph" class="glyphicon glyphicon-home" href="/#/home"></a></li>
-        <li><a id="glyph" class="glyphicon glyphicon-pencil" href="/#/posts"></a></li>
-        <li><a id="glyph" class="glyphicon glyphicon-map-marker" href="/#/events"></a></li>
-        <li><a id="glyph" class="glyphicon glyphicon-heart" href="/#/share"></a></li>
-      </ul>
-    </nav>
+    <!-- <div class="alertMsg">
+      <p><strong>Warning! </strong> Computer use can be monitored and is impossible to completely clear. If you are afraid your internet usage might be monitored, look into downloading a VPN.</p>
+    </div> -->
+      <button onclick="hide()" id="hideBtn" class="btn">Click me!!</button>
+      <!-- <span id="hideBtn-msg">If at any time you want to mask your screen, simply click this button.</span> -->
+      <div class="row">
+          <ui-view></ui-view>
+      </div>
 
-
-    <div class="row">
-        <ui-view></ui-view>
-    </div>
-
-    <footer></footer>
+      <footer></footer>
 
 
 
@@ -49,9 +52,10 @@
            <span>
              <a href="#/posts/{{post._id}}">Comments</a>
            </span>
-           <a id="addGlyph" class="glyphicon glyphicon-pencil" href="/#/newPost"></a>
-
          </div>
+         <a id="addGlyph" class="glyphicon glyphicon-pencil" href="/#/newPost">Post</a>
+         <button id="hideBtn" class="btn"></button>
+       </div>
     </script>
 
 
@@ -67,7 +71,7 @@
            </div>
            <div class="form-group">
              <input type="text" placeholder="Username" ng-model="username"><div id="detail" class="glyphicon glyphicon-exclamation-sign">
-               <span id="some-element">
+               <span id="post-msg">
                   Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                 </span>
              </div></input>
@@ -122,7 +126,7 @@
             <div class="col-md-4 items" id="item1">
               <h2 class="animated infinite pulse" id="square-title">Reach Out</h2>
               <a class="glyphicon glyphicon-heart" id="glyph-square" href="/#/share"></a>
-              <p id="home-text">It is our desire that this will be a place of hope, encouragement, knowledge, inspiration, friendship and healing. If you need additional support, we have resources detailing local shelters and hotlines.</p>
+              <p id="home-text">It is our desire that this will be a place of hope, encouragement, knowledge, inspiration, friendship and healing. If you need support, we have resources detailing local shelters and hotlines.</p>
               <!-- <button onclick="location.href = '/#/share'" class="btn" id="btn1" type="button"><span class="glyphicon glyphicon-menu-right"></span></button> -->
             </div>
             <div class="col-md-4 items" id="item2">
@@ -141,48 +145,94 @@
         </div>
       </div>
 
-      <div class="section-2">
-
       </script>
 
 
 
 
     <script type="text/ng-template" id="/events.html">
+      <div class="event-container">
         <div class="spin">
           <div class="wrap">
             <div class="sticker"></div>
             <div class="msg">events!</div>
           </div>
         </div>
+
+      <div id="map">
+      </div>
+      </div>
     </script>
 
 
 
 
     <script type="text/ng-template" id="/share.html">
+      <div id="share-page">
+        <ul id="rig">
+          <li>
+          <a class="rig-cell" href="https://aafvhope.org/">
+              <img class="rig-img" src="/images/aafv.png" />
+              <span class="rig-overlay"></span>
+              <span class="rig-text">Advocates Against Family Violence</span>
+          </a>
+          </li>
+          <li>
+          <a class="rig-cell" href="http://www.amenclinics.com/">
+              <img class="rig-img" src="/images/amen-clinics.png" />
+              <span class="rig-overlay"></span>
+              <span class="rig-text">Amen Clinics</span>
+          </a>
+          </li>
+          <li>
+          <a class="rig-cell" href="http://www.healthyplace.com/">
+              <img class="rig-img" src="/images/healthy-place.png" />
+              <span class="rig-overlay"></span>
+              <span class="rig-text">Healthy Place</span>
+          </a>
+          </li>
+          <li>
+          <a class="rig-cell" href="http://www.thehotline.org/">
+              <img class="rig-img" src="/images/hotline.png" />
+              <span class="rig-overlay"></span>
+              <span class="rig-text">The Hot Line</span>
+          </a>
+          </li>
+          <li>
+          <a class="rig-cell" href="https://medlineplus.gov/">
+              <img class="rig-img" src="/images/medicine-plus.png" />
+              <span class="rig-overlay"></span>
+              <span class="rig-text">Medicine Plus</span>
+          </a>
+          </li>
+          <li>
+          <a class="rig-cell" href="http://www.ncadv.org/">
+              <img class="rig-img" src="/images/ncadv.png" />
+              <span class="rig-overlay"></span>
+              <span class="rig-text">National Coalition Against Domestic Violence</span>
+          </a>
+          </li>
+          <li>
+          <a class="rig-cell" href="http://www.teenhealthandwellness.com/">
+              <img class="rig-img" src="/images/teen.png" />
+              <span class="rig-overlay"></span>
+              <span class="rig-text">Teen Health and Wellness</span>
+          </a>
+          </li>
+          <li>
+          <a class="rig-cell" href="http://www.womaninc.org/">
+              <img class="rig-img" src="/images/woman.png" />
+              <span class="rig-overlay"></span>
+              <span class="rig-text">WOMAN INC</span>
+          </a>
+          </li>
 
-      <h1>Share page</h1>
-        <div class="images-one">
-          <a id="aafv" href="https://aafvhope.org/"><img src="/images/aafv.png"></a>
-          <a id="amen" href="http://www.amenclinics.com/"><img src="/images/amen-clinics.png"></a>
-          <a id="healthy" href="http://www.healthyplace.com/"><img src="/images/healthy-place.png"></a>
-        </div>
-        <div class="images-two">
-          <a id="hotline" href="http://www.thehotline.org/"><img src="/images/hotline.png"></a>
-          <a id="medicine" href="https://medlineplus.gov/"><img src="/images/medicine-plus.png"></a>
-          <a id="ncadv" href="http://www.ncadv.org/"><img src="/images/ncadv.png"></a>
-        </div>
-
-        <div class="images-three">
-          <a id="teen" href="http://www.teenhealthandwellness.com/"><img src="/images/teen.png"></a>
-          <a id="woman" href="http://www.womaninc.org/"><img src="/images/woman.png"></a>
-        </div>
-
+        </ul>
+      </div>
     </script>
 
 
 
-
+  </div>
   </body>
 </html>
