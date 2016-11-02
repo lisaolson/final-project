@@ -1,5 +1,13 @@
 
-
+#hideBtn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  margin: 0;
+  background-color:#409990;
+  height: 50px;
+}
 #body {
   background-color: #E8E1E1;
 }
@@ -33,6 +41,15 @@
   color: #B9CFCC;
 }
 
+#hideBtn-msg {
+  border: 3px solid #ccc;
+  display: none;
+  text-transform: uppercase;
+}
+
+#hideBtn:hover #hideBtn-msg {
+  display: block;
+}
 
 .page-header.typewriter {
   padding-top: 50px;
@@ -223,12 +240,9 @@ button#btn3.btn {
   position:absolute;
   background: url(https://dl.dropbox.com/u/1143870/i/sticker.png) top center no-repeat;
   animation: spin 10s linear infinite;
-  animation-play-state: paused;
-}
-
-.sticker:hover {
   animation-play-state: running;
 }
+
 
 
 @keyframes spin {
@@ -238,44 +252,107 @@ button#btn3.btn {
 
 /* HEART PAGE */
 
-img {
-  width: 100%;
-}
-.images-one {
-
+#auth {
+  font-weight: bolder;
 }
 
-#aafv {
+#rig {
+    max-width: 100%;
+    margin:0 auto;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    padding-left: 0;
+    font-size:0;
+    background-color: #77505F;
+}
+#rig li {
+    display: inline-block;
+    *display:inline;
+    width: 25%;
+    vertical-align:middle;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
+.rig-cell {
+    display:block;
+    position: relative;
+    overflow:hidden;
 }
 
 
-#amen {
-
+.rig-img {
+    display:block;
+    width: 100%;
+    height: auto;
+    border:none;
+    transform:scale(1);
+    transition:all 1s;
 }
 
-#healthy {
-
+#rig li:hover .rig-img {
+    transform:scale(1.05);
 }
 
-#hotline {
-
+.rig-overlay {
+    position: absolute;
+    display:block;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    background: #77505F;
+    background-size:50px 50px;
+    opacity:0;
+    filter:alpha(opacity=0);
+    transition:all 0.6s;
+}
+#rig li:hover .rig-overlay {
+    opacity:0.9;
 }
 
-#medicine {
-
+.rig-text {
+    display:block;
+    padding:0 30px;
+    box-sizing:border-box;
+    position:absolute;
+    left:0;
+    width:100%;
+    text-align:center;
+    text-transform:capitalize;
+    font-size:18px;
+    font-weight:bold;
+    font-family: 'Poiret One', sans-serif;
+    font-weight: bolder;
+    top:40%;
+    color:white;
+    opacity:0;
+    transform:translateY(-20px);
+    transition:all .3s;
+}
+#rig li:hover .rig-text {
+    transform:translateY(0px);
+    opacity:0.9;
 }
 
-#ncadv {
-
+@media (max-width: 9000px) {
+    #rig li {
+        width:25%;
+    }
 }
 
-#teen {
-
+@media (max-width: 700px) {
+    #rig li {
+        width:33.33%;
+    }
 }
 
-#woman {
-
+@media (max-width: 550px) {
+    #rig li {
+        width:50%;
+    }
 }
 
 /* PENCIL PAGE */
@@ -311,7 +388,7 @@ img {
   padding-top: 5%;
 }
 
-#some-element {
+#post-msg {
   border: 3px solid #ccc;
   display: none;
   font-size: 10px;
@@ -321,6 +398,17 @@ img {
   text-transform: uppercase;
 }
 
-#detail:hover #some-element {
+#detail:hover #post-msg {
   display: block;
+}
+
+/* EVENTS */
+.event-container {
+  background-color: #E8E1E1;
+}
+
+#map {
+  height: 600px;
+  margin: 50px 100px 100px 100px;
+  border: 5px solid #77505F;
 }
