@@ -1,4 +1,9 @@
 
+.ng-scope {
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+}
+
 #hideBtn {
   position: fixed;
   bottom: 0;
@@ -7,7 +12,44 @@
   margin: 0;
   background-color:#409990;
   height: 50px;
+  -webkit-transition: width 2s;
+  transition: width 2s;
 }
+
+#showBtn {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  margin: 0;
+  background-color: #46494C;
+  height: 50px;
+}
+
+#hideBtn:hover + #hide-hover {
+  position: fixed;
+  left: 0;
+  visibility: visible;
+  font-family: 'Dancing Script', cursive;
+  background-color: #E8E1E1;
+  padding: 10px;
+}
+
+#showBtn:hover + #show-hover {
+  visibility: visible;
+  position: fixed;
+  right: 0;
+  padding: 10px;
+  background-color: #E8E1E1;
+  font-family: 'Dancing Script', cursive;
+}
+#show-hover {
+  visibility: hidden;
+}
+#hide-hover {
+  visibility: hidden;
+}
+
 #body {
   background-color: #E8E1E1;
 }
@@ -122,8 +164,9 @@
 
 .squares {
   width: 100%;
-  padding-top: 75px;
-  padding-bottom: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-bottom: 100px;
   font-family: 'Poiret One', cursive;
 }
 .squares .items {
@@ -141,6 +184,7 @@
 #home-text {
   padding: 20px;
   text-align: justify;
+  font-size: 15px;
 }
 
 #special {
@@ -187,21 +231,40 @@ button#btn3.btn {
   padding-bottom: 15px;
   top: 0;
 }
+footer {
+  margin-top: 50px;
 
-.section-2 {
-  height: 500px;
+}
+#footer-text {
+  font-family: 'Poiret One', cursive;
+  text-align: right;
+  font-size: 20px;
+  letter-spacing: 2px;
+  bottom: 0;
+  padding-top: 55px;
+  padding-right: 10px;
+}
+
+/*.section-2 {
+  padding-top: 100px;
+  margin-top: 100px;
+  height: 100px;
   animation-name: color;
   animation-duration: 30s;
   animation-iteration-count: infinite;
-}
-
+  position: fixed;
+  bottom: 0;
+  z-index: -1;
+  width: 100%;
+}*/
+/*
 @keyframes color {
   0% { background-color: #77505F; }
   25% { background-color: #E8E1E1; }
   50% { background-color: #409990; }
   75% { background-color: #E8E1E1; }
   100% { background-color: #77505F; }
-}
+}*/
 
 
 
@@ -209,6 +272,19 @@ button#btn3.btn {
 
 .container .posts {
   margin-left: 50px;
+}
+
+#addGlyph {
+  font-size: 40px;
+  color: #409990;
+  font-family: 'Poiret One', cursive;
+  text-align: right;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding-top: 240px;
+  padding-right: 270px;
+
 }
 
 
@@ -370,8 +446,23 @@ button#btn3.btn {
   padding-right: 25%;
 }
 
+#comment-text {
+  width: 60%;
+}
+
 
 /* ADD POST */
+
+#addBtn {
+  color: #E8E1E1;
+  width: 100px;
+  height: 40px;
+}
+
+#addCheck {
+  color: #77505F;
+  font-size: 30px;
+}
 
 .addPost {
   padding-left: 25%;
