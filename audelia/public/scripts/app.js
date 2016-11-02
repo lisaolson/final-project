@@ -1,4 +1,15 @@
 
+function hide() {
+  console.log('clicked!');
+  content = document.querySelector('ui-view');
+  console.log(content);
+  content.style.visibility = "hidden";
+}
+
+function alertMsg() {
+  
+}
+
 var app = angular.module('audelia', ['ui.router'])
   .config([
     '$stateProvider',
