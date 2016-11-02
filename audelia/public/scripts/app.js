@@ -6,8 +6,15 @@ function hide() {
   content.style.visibility = "hidden";
 }
 
+function show() {
+  console.log('clicked!');
+  content = document.querySelector('ui-view');
+  console.log(content);
+  content.style.visibility = "visible";
+}
+
 function alertMsg() {
-  
+
 }
 
 var app = angular.module('audelia', ['ui.router'])
