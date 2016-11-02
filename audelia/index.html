@@ -15,7 +15,7 @@
     <script src="./scripts/app.js"></script>
   </head>
 
-  <body ng-app="audelia" ng-controller="MainCtrl">
+  <body ng-app="audelia" ng-controller="MainCtrl" id="body_content">
     <div class="content">
       <nav class="navbar navbar-default" id="nav">
         <ul class="nav navbar-nav">
@@ -29,13 +29,17 @@
     <!-- <div class="alertMsg">
       <p><strong>Warning! </strong> Computer use can be monitored and is impossible to completely clear. If you are afraid your internet usage might be monitored, look into downloading a VPN.</p>
     </div> -->
-      <button onclick="hide()" id="hideBtn" class="btn">Click me!!</button>
+
+      <button onclick="hide()" id="hideBtn" class="btn"></button>
+      <span id="hide-hover">Hi! I am your hide button. Click me at any time to hide your screen.</span>
+      <button onclick="show()" id="showBtn" class="btn"></button>
+      <span id="show-hover">Hi! I am your show button. Click me at any time to get your screen back.</span>
       <!-- <span id="hideBtn-msg">If at any time you want to mask your screen, simply click this button.</span> -->
       <div class="row">
           <ui-view></ui-view>
       </div>
 
-      <footer></footer>
+      <!-- <footer class="section-2"><p id="footer-text">Audelia: nobility; strength</p></footer> -->
 
 
 
@@ -45,16 +49,11 @@
       <div class="allPosts">
          <div class="page-header">
            <h1>Audelia</h1>
+           <a id="addGlyph" class="glyphicon glyphicon-pencil" href="/#/newPost">Post</a>
          </div>
          <div ng-repeat = "post in posts">
-           {{post.title}} -  {{post.username}} - {{post.body}}
-
-           <span>
-             <a href="#/posts/{{post._id}}">Comments</a>
-           </span>
+            <a href="#/posts/{{post._id}}">{{post.title}}</a><p> By: {{post.username}} </p>
          </div>
-         <a id="addGlyph" class="glyphicon glyphicon-pencil" href="/#/newPost">Post</a>
-         <button id="hideBtn" class="btn"></button>
        </div>
     </script>
 
@@ -77,9 +76,9 @@
              </div></input>
            </div>
            <div class="form-group">
-             <textarea class="form-control" rows="10" placeholder="Post" ng-model="body"></textarea>
+             <textarea class="form-control" rows="10" placeholder="Choose any username you'd like. Your posts are anonymous. This is your community, so be kind. " ng-model="body"></textarea>
            </div>
-           <button onclick="location.href = '/#/posts'" class="btn btn-primary" type="submit"></button>
+           <button id="addBtn" onclick="location.href = '/#/posts'" class="btn" type="submit"><span id="addCheck" class="glyphicon glyphicon-check"></button>
          </form>
       </div>
      </script>
@@ -96,16 +95,15 @@
         </div>
 
         <div ng-repeat="comment in post.comments">
-          <span style="font-size:20px; margin-left:10px;">
+          <span>
             Comment: {{comment.body}}
           </span>
         </div>
 
         <form ng-submit="addComment()">
           <h3>Add a new comment</h3>
-
           <div class="form-group">
-            <textarea class="form-control" rows="3" placeholder="Comment" ng-model="body"></textarea>
+            <textarea id="comment-text" class="form-control" rows="3" placeholder="Comment" ng-model="body"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Post</button>
         </form>
