@@ -13,16 +13,17 @@
     <script src ="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
 
     <script src="./scripts/app.js"></script>
+
   </head>
 
   <body ng-app="audelia" ng-controller="MainCtrl" id="body_content">
     <div class="content">
       <nav class="navbar navbar-default" id="nav">
         <ul class="nav navbar-nav">
-          <li><a id="glyph" class="glyphicon glyphicon-home" href="/#/home"></a></li>
-          <li><a id="glyph" class="glyphicon glyphicon-pencil" href="/#/posts"></a></li>
-          <li><a id="glyph" class="glyphicon glyphicon-map-marker" href="/#/events"></a></li>
-          <li><a id="glyph" class="glyphicon glyphicon-heart glyph" href="/#/share"></a></li>
+          <li><a class="glyphicon glyphicon-home glyph" href="/#/home"></a></li>
+          <li><a class="glyphicon glyphicon-pencil glyph" href="/#/posts"></a></li>
+          <li><a class="glyphicon glyphicon-map-marker glyph" href="/#/events"></a></li>
+          <li><a class="glyphicon glyphicon-heart glyph" href="/#/share"></a></li>
         </ul>
       </nav>
 
@@ -46,12 +47,16 @@
 
 
     <script type="text/ng-template" id="/posts.html">
+      <h1 id="postTitle">Audelia</h1>
       <div class="allPosts">
-         <div class="page-header">
-           <h1>Audelia</h1>
+         <div id="border" class="page-header">
            <a id="addGlyph" class="glyphicon glyphicon-pencil" href="/#/newPost">Post</a>
+           <input id="searchBox" placeholder="search" type="text" ng-model="searchBox">
          </div>
-         <div ng-repeat = "post in posts">
+         <div ng-repeat = "post in posts | orderBy: '-reports' | filter:searchBox">
+           <hr>
+           <span style="cursor:pointer" class="glyphicon glyphicon-heart" ng-click="incrementReports(post)"></span>
+           {{post.reports}}
             <a href="#/posts/{{post._id}}">{{post.title}}</a><p> By: {{post.username}} </p>
          </div>
        </div>
@@ -78,7 +83,7 @@
            <div class="form-group">
              <textarea class="form-control" rows="10" placeholder="Choose any username you'd like. Your posts are anonymous. This is your community, so be kind. " ng-model="body"></textarea>
            </div>
-           <button id="addBtn" onclick="location.href = '/#/posts'" class="btn" type="submit"><span id="addCheck" class="glyphicon glyphicon-check"></button>
+           <button id="addBtn" onclick="location.href = '/#/posts'" class="btn" type="submit"><span id="addCheck" class="glyphicon glyphicon-ok"></button>
          </form>
       </div>
      </script>
@@ -94,7 +99,10 @@
           <h4>{{post.body}}</h4>
         </div>
 
-        <div ng-repeat="comment in post.comments">
+        <div ng-repeat="comment in post.comments | orderBy: 'reports'">
+          <span class="glyphicon glyphicon-exclamation-sign"
+          ng-click="incrementReports(comment)"></span>
+          {{comment.reports}}
           <span>
             Comment: {{comment.body}}
           </span>
@@ -149,17 +157,121 @@
 
 
     <script type="text/ng-template" id="/events.html">
-      <div class="event-container">
-        <div class="spin">
-          <div class="wrap">
-            <div class="sticker"></div>
-            <div class="msg">events!</div>
-          </div>
-        </div>
+      <div class="eventsPage">
+        <h1 id="eventTitle">EVENTS</h1>
+        <iframe src="http://500pxwidget.com/in/?u=cm9ic2VzZXxpbnwxMDB8MTB8Mnx8eWVzfDV8" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:1150px; height: 230px" ></iframe>
+        <div class="container">
 
-      <div id="map">
+    <div id="allEvents">
+      <div class="row row1">
+        <div class="col-md-3 eventId eventId1" id="event1">
+          <h3>SNOWGLOBE</h3>
+          <hr>
+          <p>Category: Music</p>
+          <p>Location: Lake Tahoe</p>
+          <p>Time: December 29-31, 2016</p>
+          <a href="https://www.meetup.com/SF-EDM/events/234160772/">Check it out!</a>
+        </div>
+        <div class="col-md-3 eventId eventId1" id="event2">
+          <h3>Paint</h3>
+          <hr>
+          <p>Category: Arts</p>
+          <p>Location: Spark Arts</p>
+          <p>Time: Sunday, December 4, 2016</p>
+          <a href="https://www.meetup.com/San-Francisco-open-studio-painting-drawing-crafting/events/233777075/">Check it out!</a>
+        </div>
+        <div class="col-md-3 eventId eventId1" id="event3">
+          <h3>Bazaar Stock</h3>
+          <hr>
+          <p>Category: Music</p>
+          <p>Location: Bazaar Cafe</p>
+          <p>Time: Saturday, December 3, 2016</p>
+          <a href="https://www.meetup.com/Outer-Richmond-Hangout-Meetup/events/233718574/">Check it out!</a>
+        </div>
+        <div class="col-md-3 eventId eventId1" id="event4">
+          <h3>Write, Eat, Drink</h3>
+          <hr>
+          <p>Category: Writing</p>
+          <p>Location: Panera Bread</p>
+          <p>Time: Thursday, December 1, 2016</p>
+          <a href="https://www.meetup.com/Writing-Fiends-of-Livermore/events/235113854/">Check it out!</a>
+        </div>
       </div>
+
+
+      <div class="row row2">
+        <div class="col-md-3 eventId" id="event5">
+          <h3>Read</h3>
+          <hr>
+          <p>Category: Book Club</p>
+          <p>Location: TBD</p>
+          <p>Time: Thursday, December 1, 2016</p>
+          <a href="https://www.meetup.com/meetup-group-jFNBsrWm/events/233879543/">Check it out!</a>
+        </div>
+        <div class="col-md-3 eventId" id="event6">
+          <h3>Open Studio</h3>
+          <hr>
+          <p>Category: Crafts</p>
+          <p>Location: Sticky Art</p>
+          <p>Time: Saturday, December 10, 2016</p>
+          <a href="https://www.meetup.com/Berkeley-Handmade-Arts-Crafts-Meetup/events/233471035/">Check it out!</a>
+        </div>
+        <div class="col-md-3 eventId" id="event7">
+          <h3>Happy Hour</h3>
+          <hr>
+          <p>Category: Outdoors</p>
+          <p>Location: TBD</p>
+          <p>Time: Sunday, January 1, 2017</p>
+          <a href="https://www.meetup.com/the-other-original-bay-area-backpack-meetup/events/234477446/">Check it out!</a>
+        </div>
+        <div class="col-md-3 eventId" id="event8">
+          <h3>Boho Flair</h3>
+          <hr>
+          <p>Category: Crafts</p>
+          <p>Location: Beads</p>
+          <p>Time: Wednesday, December 28, 2016</p>
+          <a href="https://www.meetup.com/Bead-Inspirations-Beading-Group/events/233721600/">Check it out!</a>
+        </div>
       </div>
+
+
+      <div class="row row3">
+        <div class="col-md-3 eventId" id="event9">
+          <h3>Fantasy of Lights</h3>
+          <hr>
+          <p>Category: Photo</p>
+          <p>Location: TBD</p>
+          <p>Time: Sunday, December 4, 2016</p>
+          <a href="https://www.meetup.com/South-Bay-Photography/events/235234836/">Check it out!</a>
+        </div>
+        <div class="col-md-3 eventId" id="event10">
+          <h3>Christmas Party</h3>
+          <hr>
+          <p>Category: Christmas</p>
+          <p>Location: ATwater</p>
+          <p>Time: Tuesday, December 6, 2016</p>
+          <a href="https://www.meetup.com/somarotary/events/234723015/">Check it out!</a>
+        </div>
+        <div class="col-md-3 eventId" id="event11">
+          <h3>Exposed</h3>
+          <hr>
+          <p>Category: Photo</p>
+          <p>Location: HTE</p>
+          <p>Time: Friday, December 9, 2016</p>
+          <a href="" >Check it out!</a>
+        </div>
+        <div class="col-md-3 eventId" id="event12">
+          <h3>TurnON</h3>
+          <hr>
+          <p>Category: Community</p>
+          <p>Location: TBD</p>
+          <p>Time: Wednesday, November 9, 2016</p>
+          <a href="https://www.meetup.com/OneTasteSF/events/235249026/">Check it out!</a>
+        </div>
+      </div>
+      <hr>
+
+    </div>
     </script>
 
 
@@ -168,6 +280,12 @@
     <script type="text/ng-template" id="/share.html">
       <div id="share-page">
         <ul id="rig">
+          <div class="row">
+          <div class="col-md-6" id="share-animate"></div>
+          <div class="col-md-6"><h1 id="hearts-title">REACH OUT</h1></div>
+        </div>
+
+          <!-- <h1 id="hearts-title"> Note: if you're concerned your internet usage might be monitored, look into downloading a vpn. <a href="https://www.hotspotshield.com/download/">Learn More</a></h1> -->
           <li>
           <a class="rig-cell" href="https://aafvhope.org/">
               <img class="rig-img" src="/images/aafv.png" />
@@ -224,7 +342,8 @@
               <span class="rig-text">WOMAN INC</span>
           </a>
           </li>
-
+            <h1 id="hearts-script"> ...I tell myself I am not afraid <br> <span id="piglet">~Piglet</span></h1>
+            <hr>
         </ul>
       </div>
     </script>
