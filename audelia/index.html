@@ -27,27 +27,18 @@
         </ul>
       </nav>
 
-    <!-- <div class="alertMsg">
-      <p><strong>Warning! </strong> Computer use can be monitored and is impossible to completely clear. If you are afraid your internet usage might be monitored, look into downloading a VPN.</p>
-    </div> -->
-
       <button onclick="hide()" id="hideBtn" class="btn"></button>
       <span id="hide-hover">Hi! I am your hide button. Click me at any time to hide your screen.</span>
       <button onclick="show()" id="showBtn" class="btn"></button>
       <span id="show-hover">Hi! I am your show button. Click me at any time to get your screen back.</span>
-      <!-- <span id="hideBtn-msg">If at any time you want to mask your screen, simply click this button.</span> -->
       <div class="row">
           <ui-view></ui-view>
       </div>
 
-      <!-- <footer class="section-2"><p id="footer-text">Audelia: nobility; strength</p></footer> -->
-
-
-
 
 
     <script type="text/ng-template" id="/posts.html">
-      <h1 id="postTitle">Audelia</h1>
+      <h1 class="animated lightSpeedIn" id="postTitle">Audelia</h1>
       <div class="allPosts">
          <div id="border" class="page-header">
            <a id="addGlyph" class="glyphicon glyphicon-pencil" href="/#/newPost">Post</a>
@@ -60,6 +51,10 @@
             <a href="#/posts/{{post._id}}">{{post.title}}</a><p> By: {{post.username}} </p>
          </div>
        </div>
+       <hr>
+       <div class="home_text">
+         <p id="home-quote">Let us love the world to peace<br><span id="home-auth">Eileen elias Freeman</span></p>
+       </div>
     </script>
 
 
@@ -67,6 +62,7 @@
 
 
     <script type="text/ng-template" id="/newPost.html">
+      <button id="btn-back" onclick="location.href = '/#/posts'" class="btn">Back to Posts</button>
       <div class="addPost">
          <form ng-submit="addPost()">
            <h3>Add a new post</h3>
@@ -74,24 +70,26 @@
              <input type="text" placeholder="Title" ng-model="title"></input>
            </div>
            <div class="form-group">
-             <input type="text" placeholder="Username" ng-model="username"><div id="detail" class="glyphicon glyphicon-exclamation-sign">
-               <span id="post-msg">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </span>
-             </div></input>
+             <input type="text" placeholder="Username" ng-model="username"></input>
            </div>
            <div class="form-group">
-             <textarea class="form-control" rows="10" placeholder="Choose any username you'd like. Your posts are anonymous. This is your community, so be kind. " ng-model="body"></textarea>
+             <textarea class="form-control" rows="10" placeholder="Choose any username you'd like, or none at all if you're not comfortable. Your posts are entirely anonymous. Be aware that once posted, it cannot be edited/deleted. This is your community, so be kind. " ng-model="body"></textarea>
            </div>
            <button id="addBtn" onclick="location.href = '/#/posts'" class="btn" type="submit"><span id="addCheck" class="glyphicon glyphicon-ok"></button>
          </form>
       </div>
+      <hr>
+      <div class="home_text">
+        <p id="home-quote">Let us love the world to peace<br><span id="home-auth">Eileen elias Freeman</span></p>
+      </div>
+
      </script>
 
 
 
 
     <script type="text/ng-template" id = "/post.html">
+      <button id="btn-back" onclick="location.href = '/#/posts'" class="btn">Back to Posts</button>
       <div class="addComment">
         <div class="page-header">
           <h3>{{post.title}}</h3>
@@ -113,8 +111,12 @@
           <div class="form-group">
             <textarea id="comment-text" class="form-control" rows="3" placeholder="Comment" ng-model="body"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Post</button>
+          <button id="btn-comm" type="submit" class="btn">Post</button>
         </form>
+      </div>
+      <hr>
+      <div class="home_text">
+        <p id="home-quote">Let us love the world to peace<br><span id="home-auth">Eileen elias Freeman</span></p>
       </div>
     </script>
 
@@ -149,6 +151,10 @@
             </div>
           </div>
         </div>
+        <hr>
+        <div class="home_text">
+          <p id="home-quote">Let us love the world to peace<br><span id="home-auth">Eileen elias Freeman</span></p>
+        </div>
       </div>
 
       </script>
@@ -158,120 +164,121 @@
 
     <script type="text/ng-template" id="/events.html">
       <div class="eventsPage">
-        <h1 id="eventTitle">EVENTS</h1>
+        <h1 class="animated 4s fadeInDown" id="eventTitle">EVENTS</h1>
         <iframe src="http://500pxwidget.com/in/?u=cm9ic2VzZXxpbnwxMDB8MTB8Mnx8eWVzfDV8" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:1150px; height: 230px" ></iframe>
+        <h2 id="bay-area" class="animated 4s fadeInUp">BAY AREA</h2>
+        <div class="element"></div>
         <div class="container">
-
-    <div id="allEvents">
-      <div class="row row1">
-        <div class="col-md-3 eventId eventId1" id="event1">
-          <h3>SNOWGLOBE</h3>
-          <hr>
-          <p>Category: Music</p>
-          <p>Location: Lake Tahoe</p>
-          <p>Time: December 29-31, 2016</p>
-          <a href="https://www.meetup.com/SF-EDM/events/234160772/">Check it out!</a>
-        </div>
-        <div class="col-md-3 eventId eventId1" id="event2">
-          <h3>Paint</h3>
-          <hr>
-          <p>Category: Arts</p>
-          <p>Location: Spark Arts</p>
-          <p>Time: Sunday, December 4, 2016</p>
-          <a href="https://www.meetup.com/San-Francisco-open-studio-painting-drawing-crafting/events/233777075/">Check it out!</a>
-        </div>
-        <div class="col-md-3 eventId eventId1" id="event3">
-          <h3>Bazaar Stock</h3>
-          <hr>
-          <p>Category: Music</p>
-          <p>Location: Bazaar Cafe</p>
-          <p>Time: Saturday, December 3, 2016</p>
-          <a href="https://www.meetup.com/Outer-Richmond-Hangout-Meetup/events/233718574/">Check it out!</a>
-        </div>
-        <div class="col-md-3 eventId eventId1" id="event4">
-          <h3>Write, Eat, Drink</h3>
-          <hr>
-          <p>Category: Writing</p>
-          <p>Location: Panera Bread</p>
-          <p>Time: Thursday, December 1, 2016</p>
-          <a href="https://www.meetup.com/Writing-Fiends-of-Livermore/events/235113854/">Check it out!</a>
-        </div>
-      </div>
-
-
-      <div class="row row2">
-        <div class="col-md-3 eventId" id="event5">
-          <h3>Read</h3>
-          <hr>
-          <p>Category: Book Club</p>
-          <p>Location: TBD</p>
-          <p>Time: Thursday, December 1, 2016</p>
-          <a href="https://www.meetup.com/meetup-group-jFNBsrWm/events/233879543/">Check it out!</a>
-        </div>
-        <div class="col-md-3 eventId" id="event6">
-          <h3>Open Studio</h3>
-          <hr>
-          <p>Category: Crafts</p>
-          <p>Location: Sticky Art</p>
-          <p>Time: Saturday, December 10, 2016</p>
-          <a href="https://www.meetup.com/Berkeley-Handmade-Arts-Crafts-Meetup/events/233471035/">Check it out!</a>
-        </div>
-        <div class="col-md-3 eventId" id="event7">
-          <h3>Happy Hour</h3>
-          <hr>
-          <p>Category: Outdoors</p>
-          <p>Location: TBD</p>
-          <p>Time: Sunday, January 1, 2017</p>
-          <a href="https://www.meetup.com/the-other-original-bay-area-backpack-meetup/events/234477446/">Check it out!</a>
-        </div>
-        <div class="col-md-3 eventId" id="event8">
-          <h3>Boho Flair</h3>
-          <hr>
-          <p>Category: Crafts</p>
-          <p>Location: Beads</p>
-          <p>Time: Wednesday, December 28, 2016</p>
-          <a href="https://www.meetup.com/Bead-Inspirations-Beading-Group/events/233721600/">Check it out!</a>
-        </div>
-      </div>
+          <div id="allEvents">
+            <div class="row row1">
+              <div class="col-md-3 eventId eventId1" id="event1">
+                <h3 class="animated 2s rollIn">SNOWGLOBE</h3>
+                <hr>
+                <p>Category: Music</p>
+                <p>Location: Lake Tahoe</p>
+                <p>Time: December 29-31, 2016</p>
+                <a href="https://www.meetup.com/SF-EDM/events/234160772/">Check it out!</a>
+              </div>
+              <div class="col-md-3 eventId eventId1" id="event2">
+                <h3 class="animated 2s rollIn">Paint</h3>
+                <hr>
+                <p>Category: Arts</p>
+                <p>Location: Spark Arts</p>
+                <p>Time: Sunday, December 4, 2016</p>
+                <a href="https://www.meetup.com/San-Francisco-open-studio-painting-drawing-crafting/events/233777075/">Check it out!</a>
+              </div>
+              <div class="col-md-3 eventId eventId1" id="event3">
+                <h3 class="animated 2s rollIn">Bazaar Stock</h3>
+                <hr>
+                <p>Category: Music</p>
+                <p>Location: Bazaar Cafe</p>
+                <p>Time: Saturday, December 3, 2016</p>
+                <a href="https://www.meetup.com/Outer-Richmond-Hangout-Meetup/events/233718574/">Check it out!</a>
+              </div>
+              <div class="col-md-3 eventId eventId1" id="event4">
+                <h3 class="animated 2s rollIn">Write, Eat, Drink</h3>
+                <hr>
+                <p>Category: Writing</p>
+                <p>Location: Panera Bread</p>
+                <p>Time: Thursday, December 1, 2016</p>
+                <a href="https://www.meetup.com/Writing-Fiends-of-Livermore/events/235113854/">Check it out!</a>
+              </div>
+            </div>
 
 
-      <div class="row row3">
-        <div class="col-md-3 eventId" id="event9">
-          <h3>Fantasy of Lights</h3>
-          <hr>
-          <p>Category: Photo</p>
-          <p>Location: TBD</p>
-          <p>Time: Sunday, December 4, 2016</p>
-          <a href="https://www.meetup.com/South-Bay-Photography/events/235234836/">Check it out!</a>
-        </div>
-        <div class="col-md-3 eventId" id="event10">
-          <h3>Christmas Party</h3>
-          <hr>
-          <p>Category: Christmas</p>
-          <p>Location: ATwater</p>
-          <p>Time: Tuesday, December 6, 2016</p>
-          <a href="https://www.meetup.com/somarotary/events/234723015/">Check it out!</a>
-        </div>
-        <div class="col-md-3 eventId" id="event11">
-          <h3>Exposed</h3>
-          <hr>
-          <p>Category: Photo</p>
-          <p>Location: HTE</p>
-          <p>Time: Friday, December 9, 2016</p>
-          <a href="" >Check it out!</a>
-        </div>
-        <div class="col-md-3 eventId" id="event12">
-          <h3>TurnON</h3>
-          <hr>
-          <p>Category: Community</p>
-          <p>Location: TBD</p>
-          <p>Time: Wednesday, November 9, 2016</p>
-          <a href="https://www.meetup.com/OneTasteSF/events/235249026/">Check it out!</a>
-        </div>
-      </div>
-      <hr>
+            <div class="row row2">
+              <div class="col-md-3 eventId" id="event5">
+                <h3 class="animated 2s rollIn">Read</h3>
+                <hr>
+                <p>Category: Book Club</p>
+                <p>Location: TBD</p>
+                <p>Time: Thursday, December 1, 2016</p>
+                <a href="https://www.meetup.com/meetup-group-jFNBsrWm/events/233879543/">Check it out!</a>
+              </div>
+              <div class="col-md-3 eventId" id="event6">
+                <h3 class="animated 2s rollIn">Open Studio</h3>
+                <hr>
+                <p>Category: Crafts</p>
+                <p>Location: Sticky Art</p>
+                <p>Time: Saturday, December 10, 2016</p>
+                <a href="https://www.meetup.com/Berkeley-Handmade-Arts-Crafts-Meetup/events/233471035/">Check it out!</a>
+              </div>
+              <div class="col-md-3 eventId" id="event7">
+                <h3 class="animated 2s rollIn">Happy Hour</h3>
+                <hr>
+                <p>Category: Outdoors</p>
+                <p>Location: TBD</p>
+                <p>Time: Sunday, January 1, 2017</p>
+                <a href="https://www.meetup.com/the-other-original-bay-area-backpack-meetup/events/234477446/">Check it out!</a>
+              </div>
+              <div class="col-md-3 eventId" id="event8">
+                <h3 class="animated 2s rollIn">Boho Flair</h3>
+                <hr>
+                <p>Category: Crafts</p>
+                <p>Location: Beads</p>
+                <p>Time: Wednesday, December 28, 2016</p>
+                <a href="https://www.meetup.com/Bead-Inspirations-Beading-Group/events/233721600/">Check it out!</a>
+              </div>
+            </div>
 
-    </div>
+
+            <div class="row row3">
+              <div class="col-md-3 eventId" id="event9">
+                <h3 class="animated 2s rollIn">Fantasy of Lights</h3>
+                <hr>
+                <p>Category: Photo</p>
+                <p>Location: TBD</p>
+                <p>Time: Sunday, December 4, 2016</p>
+                <a href="https://www.meetup.com/South-Bay-Photography/events/235234836/">Check it out!</a>
+              </div>
+              <div class="col-md-3 eventId" id="event10">
+                <h3 class="animated 2s rollIn">Christmas Party</h3>
+                <hr>
+                <p>Category: Christmas</p>
+                <p>Location: ATwater</p>
+                <p>Time: Tuesday, December 6, 2016</p>
+                <a href="https://www.meetup.com/somarotary/events/234723015/">Check it out!</a>
+              </div>
+              <div class="col-md-3 eventId" id="event11">
+                <h3 class="animated 2s rollIn">Exposed</h3>
+                <hr>
+                <p>Category: Photo</p>
+                <p>Location: HTE</p>
+                <p>Time: Friday, December 9, 2016</p>
+                <a href="" >Check it out!</a>
+              </div>
+              <div class="col-md-3 eventId" id="event12">
+                <h3 class="animated 2s rollIn">TurnON</h3>
+                <hr>
+                <p>Category: Community</p>
+                <p>Location: TBD</p>
+                <p>Time: Wednesday, November 9, 2016</p>
+                <a href="https://www.meetup.com/OneTasteSF/events/235249026/">Check it out!</a>
+              </div>
+            </div>
+            <hr>
+
+          </div>
     </script>
 
 
@@ -281,8 +288,7 @@
       <div id="share-page">
         <ul id="rig">
           <div class="row">
-          <div class="col-md-6" id="share-animate"></div>
-          <div class="col-md-6"><h1 id="hearts-title">REACH OUT</h1></div>
+          <div class="col-md-6"><h1 class="animated flipInX" id="hearts-title">REACH OUT</h1></div>
         </div>
 
           <!-- <h1 id="hearts-title"> Note: if you're concerned your internet usage might be monitored, look into downloading a vpn. <a href="https://www.hotspotshield.com/download/">Learn More</a></h1> -->
@@ -342,8 +348,7 @@
               <span class="rig-text">WOMAN INC</span>
           </a>
           </li>
-            <h1 id="hearts-script"> ...I tell myself I am not afraid <br> <span id="piglet">~Piglet</span></h1>
-            <hr>
+            <div class="container-animate"><div class="col-md-6" id="share-animate"></div></div>
         </ul>
       </div>
     </script>
