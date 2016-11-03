@@ -13,9 +13,6 @@ function show() {
   content.style.visibility = "visible";
 }
 
-function alertMsg() {
-
-}
 
 var app = angular.module('audelia', ['ui.router'])
   .config([
@@ -24,7 +21,7 @@ var app = angular.module('audelia', ['ui.router'])
     function($stateProvider, $urlRouterProvider) {
 
       $stateProvider
-        .state('/home', {
+        .state('home', {
           url:'/home',
           templateUrl: '/home.html',
         })
@@ -101,6 +98,18 @@ var app = angular.module('audelia', ['ui.router'])
       return $http.post('/posts/' + id + '/comments', comment);
     };
 
+    o.report = function(post) {
+      return $http.put('/posts/' + post._id + '/report').success(function(data){
+        post.reports += 1;
+      });
+    };
+
+    o.reportComment = function(post, comment) {
+      return $http.put('/posts/' + post._id + '/comments/' + comment._id + '/report').success(function(data){
+        comment.reports += 1;
+      });
+    };
+
     return o;
   }])
 
@@ -124,6 +133,10 @@ var app = angular.module('audelia', ['ui.router'])
         $scope.username = '';
         $scope.body = '';
       };
+
+      $scope.incrementReports = function(post) {
+        posts.report(post);
+      };
     }])
 
   app.controller('PostsCtrl', [
@@ -141,5 +154,9 @@ var app = angular.module('audelia', ['ui.router'])
           $scope.post.comments.push(comment);
         });
         $scope.body = '';
+      };
+
+      $scope.incrementReports = function(comment) {
+        posts.reportComment(post, comment);
       };
     }])
