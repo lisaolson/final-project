@@ -91,13 +91,28 @@ app.post('/posts/:post/comments', function(req, res, next){
   });
 });
 
-app.get('/posts/:post', function(req, res) {
+app.get('/posts/:post', function(req, res, next) {
   req.post.populate('comments', function(err, post) {
     if(err) { return next(err); }
 
       res.json(post);
   });
 });
+
+app.put('/posts/:post/report', function(req, res, next) {
+  req.post.report(function(err, post) {
+    if (err) { return next(err); }
+    res.json(post);
+  });
+});
+
+app.put('/posts/:post/comments/:comment/report', function(req, res, next) {
+  req.comment.report(function(err, comment) {
+    if (err) { return next(err); }
+    res.json(comment);
+  });
+});
+
 
 //listen on port 3000
 
