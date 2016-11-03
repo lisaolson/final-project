@@ -2,6 +2,7 @@
 .ng-scope {
   font-family: 'Poiret One', cursive;
   font-size: 20px;
+  padding-bottom: 10px;
 }
 
 #hideBtn {
@@ -10,7 +11,7 @@
   left: 0;
   width: 50px;
   margin: 0;
-  background-color:#409990;
+  background-color: #E3C6C6;
   height: 50px;
   -webkit-transition: width 2s;
   transition: width 2s;
@@ -31,7 +32,7 @@
   left: 0;
   visibility: visible;
   font-family: 'Dancing Script', cursive;
-  background-color: #E8E1E1;
+  background-color: #E3C6C6;
   padding: 10px;
 }
 
@@ -40,7 +41,7 @@
   position: fixed;
   right: 0;
   padding: 10px;
-  background-color: #E8E1E1;
+  background-color: #E3C6C6;
   font-family: 'Dancing Script', cursive;
 }
 #show-hover {
@@ -68,9 +69,9 @@
 
  @keyframes color {
    0% { background-color: #77505F; }
-   25% { background-color: #E8E1E1; }
+   25% { background-color: #E3C6C6;; }
    50% { background-color: #409990; }
-   75% { background-color: #E8E1E1; }
+   75% { background-color: #E3C6C6;; }
    100% { background-color: #77505F; }
 }
 
@@ -136,7 +137,7 @@
   padding-bottom: 50px;
   font-size: 60px;
   font-family: 'Poiret One';
-  color: #E8E1E1;
+  color: #E3C6C6;
 }
 
 #aud {
@@ -150,21 +151,7 @@
 #title-script {
   font-family: 'Dancing Script', cursive;
   text-align: center;
-  color: #E8E1E1;
-}
-
-@import "compass/css3";
-
-@include keyframes(bounce) {
-	0%, 20%, 50%, 80%, 100% {
-    @include transform(translateY(0));
-  }
-	40% {
-    @include transform(translateY(-30px));
-  }
-	60% {
-    @include transform(translateY(-15px));
-  }
+  color: #E3C6C6;
 }
 
 
@@ -172,7 +159,6 @@
   width: 100%;
   padding-top: 50px;
   padding-bottom: 50px;
-  margin-bottom: 100px;
   font-family: 'Poiret One', cursive;
 }
 .squares .items {
@@ -237,21 +223,21 @@ button#btn3.btn {
   padding-bottom: 15px;
   top: 0;
 }
-footer {
-  margin-top: 50px;
 
+.home_text {
+  width: 100%;
+  font-family: 'Dancing Script', cursive;
+  color: #E3C6C6;
+  text-align: center;
 }
-#footer-text {
-  font-family: 'Poiret One', cursive;
-  text-align: right;
+
+#home-quote {
+  font-size: 30px;
+}
+
+#home-auth {
   font-size: 20px;
-  letter-spacing: 2px;
-  bottom: 0;
-  padding-top: 55px;
-  padding-right: 10px;
 }
-
-
 /* POSTS PAGE */
 
 .allPosts {
@@ -288,44 +274,30 @@ footer {
 
 /* EVENTS PAGE */
 /*
-#share-animate {
-  width: 100px;
-    height: 100px;
-    background-color: red;
-    position: relative;
-    -webkit-animation-name: example;
-    -webkit-animation-duration: 4s;
-    animation-name: roll;
-    animation-duration: 4s;
-    animation-delay: 2s;
-}*/
-
-/*@keyframes roll {
-    0%   {background-color:#E8E1E1; left:0px; top:0px;}
-    25%  {background-color:#C2908F; left:200px; top:0px;}
-    50%  {background-color:#EC7E7C; left:400px; top:0px;}
-    75%  {background-color:#C182C5; left:700px; top:0px;}
-    100% {background-color:#E8E1E1; left:800px; top:0px;}*/
-}
 .spin {
   padding:4em;
   background:#fcfcfc;
   height: 300px;
   background-color: #E8E1E1;
-}
+}*/
 
+.container-animate {
+  height: 150px;
+  width: 100%;
+  background-color: #46494C;
+}
 
 #share-animate {
   width: 100px;
   height: 3px;
   position: relative;
-  background-color: #46494C;
+  background-color: #E3C6C6;
   animation: spin 10s linear infinite;
   animation-play-state: running;
   z-index: 1;
-  margin-left: 200px;
-  display: inline;
-  margin-top: 120px;
+  margin-left: 45%;
+  margin-top: 70px;
+  margin-bottom: 100px;
 }
 
 
@@ -340,35 +312,14 @@ footer {
 #hearts-title {
   font-family: 'Poiret One', cursive;
   font-size: 80px;
-  padding-bottom: 30px;
   text-align: center;
-  color: #E8E1E1;
-  letter-spacing: 7px;
+  color: #E3C6C6;
+  letter-spacing: 12px;
   border-bottom: 3px solid #E8E1E1;
-  border-left: 3px solid #E8E1E1;
-  margin-bottom: 20px;
-  width: 400px;
-  margin-left: 100px;
-  padding-right: 350px;
-  padding-left: 35px;
+  width: 100%;
   text-align: center;
 }
 
-#hearts-script {
-  font-family: 'Dancing Script', cursive;
-  padding-right: 3%;
-  padding-top: 3%;
-  text-align: right;
-  color: #E8E1E1;
-  bottom: 0;
-  font-size: 30px;
-  letter-spacing: 3px;
-}
-
-#piglet {
-  padding-left: 25%;
-  font-size: 20px;
-}
 
 #auth {
   font-weight: bolder;
@@ -377,10 +328,9 @@ footer {
 #rig {
     max-width: 100%;
     margin:0 auto;
-    padding-bottom: 70px;
     padding-left: 0;
     font-size:0;
-    background-color: #409990;
+    background-color: white;
 }
 #rig li {
     display: inline-block;
@@ -483,6 +433,22 @@ footer {
   width: 60%;
 }
 
+#btn-back {
+  background-color: #E8E1E1;
+}
+
+#btn-comm {
+  background-color: #E8E1E1;
+}
+
+#btn-back:hover{
+  background-color:#77505F;
+  color: #E8E1E1;
+}
+#btn-comm:hover {
+  background-color: #409990;
+  color: #E8E1E1;
+}
 
 /* ADD POST */
 
@@ -535,15 +501,69 @@ iframe {
   background-color: #333333;
 }
 
+#bay-area {
+  text-align: center;
+  font-size: 60px;
+  letter-spacing: 3px;
+  border-bottom: 2px solid #E3C6C6;
+  width: 100%;
+  padding-bottom: 25px;
+  margin-bottom: 50px;
+}
+
+.element {
+  margin: 0 auto;
+  height: 90px;
+  width: 90px;
+  background-color: #E8E1E1;
+  animation-name: stretch;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-fill-mode: none;
+  animation-play-state: running;
+}
+
+@keyframes stretch {
+  0% {
+    transform: scale(.3);
+    background-color: #E3C6C6;
+    border-radius: 100%;
+  }
+  50% {
+    background-color: #77505F;
+  }
+  100% {
+    transform: scale(1.5);
+    background-color: #409990;
+    border-radius: 90%;
+  }
+}
+.eventId h3{
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.eventId p {
+  font-size: 18px;
+  font-weight: lighter;
+}
+
+.eventId {
+  text-align: center;
+}
 #eventTitle {
   text-align: center;
   font-size: 100px;
-  border-bottom: 4px solid #E8E1E1;
-  letter-spacing: 30px;
+  border-bottom: 4px solid  #E3C6C6;
+  letter-spacing: 35px;
+  font-weight: 100;
 }
 
 #allEvents {
-  margin-top: 100px;
+  margin-top: 24px;
   margin-bottom: 100px;
   margin-left: 40px;
   margin-right: 40px;
@@ -554,7 +574,7 @@ iframe {
 }
 
 .eventId:hover{
-  background-color: #C2908F;
+  background-color:  #E3C6C6;;
 }
 #event1 {
   border-right: 3px solid #77505F;
