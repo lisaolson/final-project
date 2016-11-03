@@ -59,29 +59,35 @@
 }
 
 .navbar {
-  height: 75px;
+   height: 80px;
+   animation-name: color;
+   animation-duration: 30s;
+   animation-iteration-count: infinite;
+   width: 100%;
+ }
+
+ @keyframes color {
+   0% { background-color: #77505F; }
+   25% { background-color: #E8E1E1; }
+   50% { background-color: #409990; }
+   75% { background-color: #E8E1E1; }
+   100% { background-color: #77505F; }
 }
+
 #nav {
   background-color: #46494C;
   margin: 0;
   border: 2px solid #E8E1E1;
-
 }
 
-#glyph {
-  color: #E8E1E1;
-  font-size: 20px;
-  padding-top: 25px;
-  padding-left: 25px;
+.glyph {
+  color: #46494C;
+  font-size: 25px;
+  margin-top: 14px;
+  margin-left: 12px;
+  z-index: 0;
 }
 
-.navbar#nav a:hover {
-  color: #77505F;
-}
-
-#glyph-square:hover {
-  color: #B9CFCC;
-}
 
 #hideBtn-msg {
   border: 3px solid #ccc;
@@ -245,30 +251,23 @@ footer {
   padding-right: 10px;
 }
 
-/*.section-2 {
-  padding-top: 100px;
-  margin-top: 100px;
-  height: 100px;
-  animation-name: color;
-  animation-duration: 30s;
-  animation-iteration-count: infinite;
-  position: fixed;
-  bottom: 0;
-  z-index: -1;
-  width: 100%;
-}*/
-/*
-@keyframes color {
-  0% { background-color: #77505F; }
-  25% { background-color: #E8E1E1; }
-  50% { background-color: #409990; }
-  75% { background-color: #E8E1E1; }
-  100% { background-color: #77505F; }
-}*/
-
-
 
 /* POSTS PAGE */
+
+.allPosts {
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-bottom: 10%;
+  padding-top: 5%;
+}
+
+#postTitle {
+  text-align: left;
+  font-size: 80px;
+  padding-left: 100px;
+  letter-spacing: 14px;
+  color: #E8E1E1;
+}
 
 .container .posts {
   margin-left: 50px;
@@ -278,18 +277,36 @@ footer {
   font-size: 40px;
   color: #409990;
   font-family: 'Poiret One', cursive;
-  text-align: right;
-  position: fixed;
-  top: 0;
-  right: 0;
-  padding-top: 240px;
-  padding-right: 270px;
+  padding-right: 49%;
+}
 
+#border {
+  border: 0;
 }
 
 
-/* EVENTS PAGE */
 
+/* EVENTS PAGE */
+/*
+#share-animate {
+  width: 100px;
+    height: 100px;
+    background-color: red;
+    position: relative;
+    -webkit-animation-name: example;
+    -webkit-animation-duration: 4s;
+    animation-name: roll;
+    animation-duration: 4s;
+    animation-delay: 2s;
+}*/
+
+/*@keyframes roll {
+    0%   {background-color:#E8E1E1; left:0px; top:0px;}
+    25%  {background-color:#C2908F; left:200px; top:0px;}
+    50%  {background-color:#EC7E7C; left:400px; top:0px;}
+    75%  {background-color:#C182C5; left:700px; top:0px;}
+    100% {background-color:#E8E1E1; left:800px; top:0px;}*/
+}
 .spin {
   padding:4em;
   background:#fcfcfc;
@@ -297,26 +314,18 @@ footer {
   background-color: #E8E1E1;
 }
 
-.wrap {width:200px; margin:auto;  z-index:1;}
 
-.msg {
-  color: whitesmoke;
-  text-align:center;
-  font-family: 'Dancing Script', Courier, monospaced;
-  font-size:4em;
-  width:200px;
-  position:absolute;
-  margin:55px 0 0 2px;
-  pointer-events: none;
-}
-
-.sticker {
-  width:200px;
-  height:200px;
-  position:absolute;
-  background: url(https://dl.dropbox.com/u/1143870/i/sticker.png) top center no-repeat;
+#share-animate {
+  width: 100px;
+  height: 3px;
+  position: relative;
+  background-color: #46494C;
   animation: spin 10s linear infinite;
   animation-play-state: running;
+  z-index: 1;
+  margin-left: 200px;
+  display: inline;
+  margin-top: 120px;
 }
 
 
@@ -328,6 +337,39 @@ footer {
 
 /* HEART PAGE */
 
+#hearts-title {
+  font-family: 'Poiret One', cursive;
+  font-size: 80px;
+  padding-bottom: 30px;
+  text-align: center;
+  color: #E8E1E1;
+  letter-spacing: 7px;
+  border-bottom: 3px solid #E8E1E1;
+  border-left: 3px solid #E8E1E1;
+  margin-bottom: 20px;
+  width: 400px;
+  margin-left: 100px;
+  padding-right: 350px;
+  padding-left: 35px;
+  text-align: center;
+}
+
+#hearts-script {
+  font-family: 'Dancing Script', cursive;
+  padding-right: 3%;
+  padding-top: 3%;
+  text-align: right;
+  color: #E8E1E1;
+  bottom: 0;
+  font-size: 30px;
+  letter-spacing: 3px;
+}
+
+#piglet {
+  padding-left: 25%;
+  font-size: 20px;
+}
+
 #auth {
   font-weight: bolder;
 }
@@ -335,11 +377,10 @@ footer {
 #rig {
     max-width: 100%;
     margin:0 auto;
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding-bottom: 70px;
     padding-left: 0;
     font-size:0;
-    background-color: #77505F;
+    background-color: #409990;
 }
 #rig li {
     display: inline-block;
@@ -379,7 +420,7 @@ footer {
     bottom: 0;
     right: 0;
     margin: auto;
-    background: #77505F;
+    background: #409990;
     background-size:50px 50px;
     opacity:0;
     filter:alpha(opacity=0);
@@ -431,14 +472,6 @@ footer {
     }
 }
 
-/* PENCIL PAGE */
-
-.allPosts {
-  padding-left: 25%;
-  padding-right: 25%;
-}
-
-
 /* ADD COMMENT */
 
 .addComment {
@@ -454,11 +487,15 @@ footer {
 /* ADD POST */
 
 #addBtn {
+  background: none;
   color: #E8E1E1;
   width: 100px;
   height: 40px;
 }
 
+#addBtn:hover {
+  opacity: .6
+}
 #addCheck {
   color: #77505F;
   font-size: 30px;
@@ -467,10 +504,6 @@ footer {
 .addPost {
   padding-left: 25%;
   padding-right: 25%;
-}
-
-#userglyph {
-
 }
 
 #detail {
@@ -494,12 +527,71 @@ footer {
 }
 
 /* EVENTS */
-.event-container {
-  background-color: #E8E1E1;
+iframe {
+  padding-left: 20px;
 }
 
-#map {
-  height: 600px;
-  margin: 50px 100px 100px 100px;
-  border: 5px solid #77505F;
+.body {
+  background-color: #333333;
+}
+
+#eventTitle {
+  text-align: center;
+  font-size: 100px;
+  border-bottom: 4px solid #E8E1E1;
+  letter-spacing: 30px;
+}
+
+#allEvents {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.eventId {
+  padding: 20px;
+}
+
+.eventId:hover{
+  background-color: #C2908F;
+}
+#event1 {
+  border-right: 3px solid #77505F;
+  border-bottom: 3px solid #77505F;
+}
+#event2 {
+  border-right: 3px solid #77505F;
+  border-bottom: 3px solid #77505F;
+}
+#event3 {
+  border-right: 3px solid #77505F;
+  border-bottom: 3px solid #77505F;
+}
+#event4 {
+border-bottom: 3px solid #77505F;
+}
+#event5 {
+  border-right: 3px solid #77505F;
+  border-bottom: 3px solid #77505F;
+}
+#event6 {
+  border-right: 3px solid #77505F;
+  border-bottom: 3px solid #77505F;
+}
+#event7 {
+  border-right: 3px solid #77505F;
+  border-bottom: 3px solid #77505F;
+}
+#event8 {
+  border-bottom: 3px solid #77505F;
+}
+#event9 {
+  border-right: 3px solid #77505F;
+}
+#event10 {
+  border-right: 3px solid #77505F;
+}
+#event11 {
+  border-right: 3px solid #77505F;
 }
