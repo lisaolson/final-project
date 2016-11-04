@@ -14,7 +14,7 @@ var Comment = mongoose.model('Comment');
 
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/audelia');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/audelia');
 //serve static files from public folder
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
