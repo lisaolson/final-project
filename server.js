@@ -10,7 +10,12 @@ require('./models/Posts');
 require('./models/Comments');
 var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
-
+var db = mongoose.connection;
+ db.on('error', console.error.bind(console, 'connection error:'));
+ db.once('open', function callback () {
+       console.log("DB connected");
+ // yay!
+ });
 
 
 mongoose.Promise = global.Promise;
