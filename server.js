@@ -30,9 +30,9 @@ app.get('/', function homepage (req, res){
 
 
 
-// app.get('/', function(req, res) {
-//   res.render('index', { title: 'Express' });
-// });
+app.get('/', function(req, res) {
+  res.render('index', { title: 'Express' });
+});
 
 
 app.get('/posts', function(req, res, next) {
